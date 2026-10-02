@@ -10,6 +10,8 @@ export function ScrollToTop() {
   const reduce = useReducedMotion();
 
   useEffect(() => {
+    // Mounted on every page: tells the failsafe in layout.tsx that hydration worked.
+    (window as Window & { __fndrsHydrated?: boolean }).__fndrsHydrated = true;
     const onScroll = () => setVisible(window.scrollY > window.innerHeight * 1.5);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });

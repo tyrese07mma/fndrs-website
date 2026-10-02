@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono, Michroma } from 'next/font/google';
+import Script from 'next/script';
 import type { ReactNode } from 'react';
 
 import { Footer } from '@/components/layout/Footer';
@@ -40,6 +41,11 @@ const orgJsonLd = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable} ${michroma.variable}`}>
+      <head>
+        <noscript>
+          <style>{`[style*="opacity"],[style*="transform"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+      </head>
       <body>
         <a
           href="#main"
@@ -53,6 +59,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </main>
         <Footer />
         <ScrollToTop />
+        {/* If React has not hydrated after 3s, stop waiting for reveal animations. */}
+        <Script id="motion-failsafe" strategy="beforeInteractive">
+          {`setTimeout(function(){if(!window.__fndrsHydrated)document.documentElement.classList.add('motion-failsafe')},3000)`}
+        </Script>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>
     </html>

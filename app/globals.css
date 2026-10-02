@@ -165,6 +165,16 @@
   }
 }
 
+/*
+ * Failsafe: reveal animations start hidden. If JavaScript is off or never
+ * hydrates (old phone browsers), show everything instead of a blank page.
+ */
+.motion-failsafe [style*='opacity'],
+.motion-failsafe [style*='transform'] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
