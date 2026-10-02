@@ -6,7 +6,10 @@
 export const site = {
   name: 'FNDRS Society',
   shortName: 'FNDRS',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
+  // Explicit URL wins; on Vercel fall back to the production domain it provides at build time.
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 'http://localhost:3000'),
   description:
     'FNDRS Society connects founders, builders, mentors and investors around what they are building, what they can do and who they are looking for.',
   contactEmail: '',
