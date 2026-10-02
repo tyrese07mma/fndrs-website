@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { OG_IMAGE } from '@/lib/metadata';
 import { site } from '@/lib/site';
 import './globals.css';
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <Footer />
+        <ScrollToTop />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
       </body>
     </html>
