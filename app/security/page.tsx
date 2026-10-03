@@ -45,15 +45,15 @@ const TOPICS: { title: string; body: string[] }[] = [
   {
     title: 'Account control',
     body: [
-      'You can edit your profile at any time. Deleting your account in the app settings permanently removes your profile, posts, messages and matches.',
-      'For a copy of your data or any other request, contact us and we will handle it.',
+      'You can edit your profile at any time. The app settings include an option to export your data, and deleting your account there permanently removes your profile, posts, messages and matches.',
+      'For any other request about your data, contact us and we will handle it.',
     ],
   },
   {
     title: 'Reporting & safety',
     body: [
       'You can report a post, a profile or a conversation from its menu in the app. Reports go to the FNDRS team for review.',
-      'Limiting messages to your matches is the simplest way to avoid unwanted contact.',
+      'The settings also list the members you have blocked. Limiting messages to your matches is the simplest way to avoid unwanted contact.',
     ],
   },
   {
@@ -108,7 +108,7 @@ export default function SecurityPage() {
             </div>
           </Reveal>
           <Reveal>
-            <ProductScreenshot screen="signIn" crop={0.7} className="mx-auto max-w-[22rem]" caption="Signing in to the FNDRS app" />
+            <ProductScreenshot screen="settingsPrivacy" className="mx-auto max-w-[22rem]" caption="Privacy and account settings in the app" />
           </Reveal>
         </div>
       </Section>

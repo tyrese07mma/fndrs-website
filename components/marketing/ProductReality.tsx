@@ -8,7 +8,7 @@ const SCREENS: { screen: ScreenKey; label: string }[] = [
   { screen: 'welcomeEn', label: 'Welcome' },
   { screen: 'signUp', label: 'Accounts' },
   { screen: 'smartMatch', label: 'Smart Match' },
-  { screen: 'discoverTop', label: 'Discover' },
+  { screen: 'discover', label: 'Discover' },
 ];
 
 /** Only what the app does today. Update together with /roadmap. */

@@ -17,11 +17,11 @@ import type { ScreenKey } from '@/lib/screens';
 
 export const metadata = pageMetadata('discover');
 
-/** Three slices of the real Discover tab, side by side (same height, so they line up). */
+/** Three slices of the real app around Discover, side by side (same height, so they line up). */
 const BAND: { screen: ScreenKey; region: { y: number; h: number }; label: string }[] = [
-  { screen: 'discoverTop', region: { y: 0.02, h: 0.55 }, label: 'Search · Startups · Events' },
-  { screen: 'discoverGrid', region: { y: 0.33, h: 0.55 }, label: 'Investors · Mentors · Knowledge' },
-  { screen: 'discoverFeed', region: { y: 0.32, h: 0.55 }, label: 'Founders that fit you' },
+  { screen: 'discover', region: { y: 0, h: 0.6 }, label: 'Search · Startups · Events · Spaces' },
+  { screen: 'launchStartup', region: { y: 0, h: 0.6 }, label: 'Launch a startup' },
+  { screen: 'hostEvent', region: { y: 0, h: 0.6 }, label: 'Host an event' },
 ];
 
 /** The five areas that work in the app and fill up as members join. */
@@ -208,8 +208,8 @@ export default function DiscoverPage() {
         ]}
         media={
           <Reveal>
-            <ProductScreenshot screen="discoverFeed" region={{ y: 0.66, h: 0.21 }} frame="flat" sizes="(min-width: 1024px) 720px, 92vw" />
-            <p className="label-mono mt-4 leading-relaxed text-faint">In the app · a fit score and the one reason that matters most</p>
+            <ProductScreenshot screen="profile" region={{ y: 0.31, h: 0.13 }} frame="flat" sizes="(min-width: 1024px) 720px, 92vw" />
+            <p className="label-mono mt-4 leading-relaxed text-faint">In the app · role, stage and what someone is open to, at a glance</p>
           </Reveal>
         }
       >
@@ -290,7 +290,13 @@ export default function DiscoverPage() {
 
       {/* ------------- Also in Discover */}
       <Section tone="raised" space="tight">
-        <h2 className="headline-sm mb-12">Also in Discover.</h2>
+        <div className="mb-12 grid gap-8 lg:grid-cols-12 lg:items-end">
+          <h2 className="headline-sm lg:col-span-6">Also in Discover.</h2>
+          <Reveal className="lg:col-span-5 lg:col-start-8">
+            <ProductScreenshot screen="search" region={{ y: 0, h: 0.3 }} frame="flat" sizes="(min-width: 1024px) 480px, 92vw" />
+            <p className="label-mono mt-3 text-faint">Search with trending topics</p>
+          </Reveal>
+        </div>
         <UseCaseGrid
           items={[
             { icon: Search, title: 'Search everything', text: 'One search across founders, startups, communities and events.' },

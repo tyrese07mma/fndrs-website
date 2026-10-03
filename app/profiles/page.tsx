@@ -4,7 +4,6 @@ import { PageHero } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
 import { ProductScreenshot } from '@/components/product/ProductScreenshot';
-import { ProfileSchematic } from '@/components/product/Schematics';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow, StatusBadge } from '@/components/ui/primitives';
 import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
@@ -40,7 +39,12 @@ export default function ProfilesPage() {
             Create your profile
           </ButtonLink>
         }
-        media={<ProfileSchematic className="mx-auto max-w-md" />}
+        media={
+          <figure className="mx-auto max-w-md">
+            <ProductScreenshot screen="profile" region={{ y: 0.31, h: 0.49 }} frame="flat" priority sizes="(min-width: 1024px) 448px, 92vw" />
+            <figcaption className="label-mono mt-4 text-faint">A profile in the app</figcaption>
+          </figure>
+        }
       />
 
       {/* ------------- Fields */}
@@ -81,17 +85,14 @@ export default function ProfilesPage() {
             }
           />
           <Reveal>
-            <div className="rounded-[16px] border hairline bg-ink-900 p-7 sm:p-9">
-              <p className="label-mono text-subtle">Looking for</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {['Technical co-founder', 'Business co-founder', 'Engineers', 'Designers', 'Growth / marketing', 'Investors', 'Mentors', 'Advisors', 'Early customers'].map((t, i) => (
-                  <span key={t} className={i < 2 ? 'inline-flex h-9 items-center rounded-full bg-ivory px-4 text-[0.875rem] font-semibold text-ink-950' : 'inline-flex h-9 items-center rounded-full border hairline-strong px-4 text-[0.875rem] text-ivory/80'}>
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <p className="label-mono mt-8 text-faint">The options in the app</p>
-            </div>
+            <ProductScreenshot
+              screen="editProfileIntent"
+              region={{ y: 0.085, h: 0.425 }}
+              frame="flat"
+              className="mx-auto max-w-lg"
+              sizes="(min-width: 1024px) 512px, 92vw"
+              caption="Looking for and Open to, as you edit them in the app"
+            />
           </Reveal>
         </div>
       </Section>
@@ -163,7 +164,7 @@ export default function ProfilesPage() {
             }
           />
           <Reveal>
-            <ProductScreenshot screen="signUp" crop={0.72} className="mx-auto max-w-[22rem]" caption="Creating a profile starts here" />
+            <ProductScreenshot screen="settingsPrivacy" region={{ y: 0, h: 0.48 }} frame="flat" className="mx-auto max-w-md" caption="Privacy settings in the app" />
           </Reveal>
         </div>
       </Section>

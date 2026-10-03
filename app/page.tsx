@@ -8,7 +8,7 @@ import { ProductReality } from '@/components/marketing/ProductReality';
 import { Section, SectionHeading } from '@/components/marketing/Section';
 import { ProductScreenshot } from '@/components/product/ProductScreenshot';
 import { ParallaxScreen, ScreenStack } from '@/components/product/ScreenStack';
-import { PostSchematic } from '@/components/product/Schematics';
+import { CopilotInApp, PostSchematic } from '@/components/product/Schematics';
 import { ArrowLink, ButtonLink } from '@/components/ui/Button';
 import { Container, Eyebrow, StatusBadge } from '@/components/ui/primitives';
 import { Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/ui/Reveal';
@@ -63,7 +63,7 @@ export default function HomePage() {
               </Reveal>
             </div>
             <Reveal delay={0.25} y={60}>
-              <ScreenStack center="welcomeEn" left="discoverTop" right="discoverFeed" priority />
+              <ScreenStack center="welcomeEn" left="discover" right="smartMatch" priority />
             </Reveal>
           </div>
         </Container>
@@ -114,8 +114,8 @@ export default function HomePage() {
           </div>
           {/* The real fit-score row from the app, and the two questions behind it. */}
           <Reveal delay={0.1} className="lg:col-span-5">
-            <ProductScreenshot screen="discoverFeed" region={{ y: 0.73, h: 0.135 }} frame="flat" sizes="(min-width: 1024px) 520px, 92vw" />
-            <p className="label-mono mt-4 text-faint">In the app · fit score with its reason</p>
+            <ProductScreenshot screen="editProfileIntent" region={{ y: 0.085, h: 0.27 }} frame="flat" sizes="(min-width: 1024px) 520px, 92vw" />
+            <p className="label-mono mt-4 text-faint">In the app · what powers Smart Match</p>
             <ul className="mt-8 border-t hairline">
               {['Has what you are looking for', 'Is looking for what you bring'].map((t) => (
                 <li key={t} className="flex items-center gap-3 border-b hairline py-4 text-[1rem] text-ivory/90">
@@ -157,7 +157,7 @@ export default function HomePage() {
             </Reveal>
           </div>
           <div className="lg:col-span-5 lg:pl-8">
-            <ParallaxScreen screen="discoverTop" className="mx-auto max-w-[22rem] lg:mt-24" rotate={2} />
+            <ParallaxScreen screen="discover" className="mx-auto max-w-[22rem] lg:mt-24" rotate={2} />
           </div>
         </div>
       </Section>
@@ -208,8 +208,7 @@ export default function HomePage() {
       <Section tone="raised">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
           <Reveal delay={0.1} className="order-2 lg:order-1 lg:col-span-5">
-            <ProductScreenshot screen="discoverFeed" region={{ y: 0.225, h: 0.125 }} frame="flat" sizes="(min-width: 1024px) 520px, 92vw" />
-            <p className="label-mono mt-4 text-faint">In the app today · not activated yet</p>
+            <CopilotInApp />
           </Reveal>
           <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7">
             <Reveal>

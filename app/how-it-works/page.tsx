@@ -28,7 +28,7 @@ const STEPS: Step[] = [
     ),
     details: ['Set up in a couple of minutes', 'A short checklist shows what is still missing', 'Available in English and German'],
     link: { href: '/profiles', label: 'What goes into a profile' },
-    media: <ProductScreenshot screen="signUp" region={{ y: 0.03, h: 0.5 }} frame="flat" className="mx-auto max-w-[24rem]" />,
+    media: <ProductScreenshot screen="signUp" region={{ y: 0.07, h: 0.58 }} frame="flat" className="mx-auto max-w-[24rem]" />,
   },
   {
     title: 'Discover',
@@ -40,7 +40,7 @@ const STEPS: Step[] = [
       </p>
     ),
     link: { href: '/discover', label: 'Explore Discover' },
-    media: <ProductScreenshot screen="discoverTop" crop={0.6} frame="flat" className="mx-auto max-w-[24rem]" />,
+    media: <ProductScreenshot screen="discover" crop={0.6} frame="flat" className="mx-auto max-w-[24rem]" />,
   },
   {
     title: 'Match',
@@ -53,7 +53,7 @@ const STEPS: Step[] = [
     ),
     details: ['25 free swipes per day', 'Filter by role, stage, industry and minimum fit', 'Revisit people you skipped'],
     link: { href: '/smart-match', label: 'How Smart Match works' },
-    media: <ProductScreenshot screen="smartMatch" crop={0.92} fade={false} className="mx-auto max-w-[20rem]" />,
+    media: <ProductScreenshot screen="smartMatch" crop={0.882} fade={false} className="mx-auto max-w-[20rem]" />,
   },
   {
     title: 'Connect',
@@ -144,7 +144,7 @@ const STEPS: Step[] = [
       </>
     ),
     link: { href: '/for-mentors', label: 'Mentors on FNDRS' },
-    media: <ProductScreenshot screen="welcomeIntros" crop={0.8} className="mx-auto max-w-[20rem]" />,
+    media: <ProductScreenshot screen="hostEvent" region={{ y: 0, h: 0.58 }} frame="flat" className="mx-auto max-w-[24rem]" caption="Hosting an event in the app" />,
   },
 ];
 

@@ -8,7 +8,6 @@ import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
 import { MatchFlow } from '@/components/product/MatchFlow';
 import { ProductScreenshot } from '@/components/product/ProductScreenshot';
-import { ProfileSchematic } from '@/components/product/Schematics';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow, StatusBadge } from '@/components/ui/primitives';
 import { Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/ui/Reveal';
@@ -38,9 +37,9 @@ const SPEC = [
 
 // Annotations on the real Smart Match screen (top = position on the cropped screen).
 const NOTES = [
-  { top: '8%', text: '25 free swipes a day' },
-  { top: '49%', text: 'All caught up — revisit people you skipped' },
-  { top: '89%', text: 'Pass · Superlike · Connect' },
+  { top: '8.5%', text: '25 free swipes a day' },
+  { top: '44%', text: 'All caught up · adjust filters' },
+  { top: '93%', text: 'Pass · Superlike · Connect' },
 ];
 
 const FAQS = [
@@ -114,8 +113,8 @@ export default function SmartMatchPage() {
           </div>
 
           <Reveal delay={0.2} y={60} className="relative self-end lg:col-span-5">
-            <div className="relative mx-auto -mb-8 w-full max-w-[20rem] sm:max-w-[22rem] lg:mr-0 xl:max-w-[21rem] 2xl:max-w-[23rem]">
-              <ProductScreenshot screen="smartMatch" crop={0.92} fade={false} priority sizes="(min-width: 1024px) 380px, 80vw" />
+            <div className="relative mx-auto -mb-3 w-full max-w-[20rem] sm:max-w-[22rem] lg:mr-0 xl:max-w-[21rem] 2xl:max-w-[23rem]">
+              <ProductScreenshot screen="smartMatch" crop={0.882} fade={false} priority sizes="(min-width: 1024px) 380px, 80vw" />
               {NOTES.map((n) => (
                 <p key={n.text} aria-hidden className="absolute right-full mr-6 hidden w-40 -translate-y-1/2 text-right xl:block" style={{ top: n.top }}>
                   <span className="label-mono leading-[1.6] text-subtle">{n.text}</span>
@@ -219,7 +218,12 @@ export default function SmartMatchPage() {
           </>
         }
         link={{ href: '/profiles', label: 'Explore Founder Profiles' }}
-        media={<ProfileSchematic className="mx-auto max-w-md" />}
+        media={
+          <figure className="mx-auto max-w-md">
+            <ProductScreenshot screen="profile" region={{ y: 0.575, h: 0.225 }} frame="flat" sizes="(min-width: 1024px) 448px, 92vw" />
+            <figcaption className="label-mono mt-4 text-faint">In the app · profile strength and what is still missing</figcaption>
+          </figure>
+        }
       />
 
       {/* ------------- Match to conversation */}

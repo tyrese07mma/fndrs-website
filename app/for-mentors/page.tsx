@@ -15,7 +15,7 @@ export default function ForMentorsPage() {
       eyebrow="For Mentors"
       title={['Experience', 'should travel.']}
       lead="You have made the mistakes, built the teams, shipped the products. FNDRS helps that experience reach the founders who need it right now — without a flooded inbox."
-      heroMedia={<ProductScreenshot screen="welcomeIntros" priority className="mx-auto max-w-[22rem]" />}
+      heroMedia={<ProductScreenshot screen="hostEvent" crop={0.75} priority className="mx-auto max-w-[22rem]" caption="Office hours, masterclasses and more" />}
       cta={{ href: '/early-access', label: 'Join FNDRS as a Mentor' }}
       useCasesTitle="What mentors do on FNDRS."
       useCases={[
@@ -44,7 +44,7 @@ export default function ForMentorsPage() {
               lead="Founders find mentors in their own section of Discover, with the promise right on the tile: book one-on-ones."
             />
             <Reveal>
-              <ProductScreenshot screen="discoverTop" crop={0.62} className="mx-auto max-w-[22rem]" />
+              <ProductScreenshot screen="discover" region={{ y: 0.6, h: 0.16 }} frame="flat" className="mx-auto max-w-lg" caption="The Mentors tile in Discover" />
             </Reveal>
           </div>
         </Section>

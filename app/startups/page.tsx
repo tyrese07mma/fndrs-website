@@ -5,7 +5,7 @@ import { PageHero } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
 import { UseCaseGrid } from '@/components/marketing/UseCaseGrid';
-import { ParallaxScreen } from '@/components/product/ScreenStack';
+import { ProductScreenshot } from '@/components/product/ProductScreenshot';
 import { StartupSchematic } from '@/components/product/Schematics';
 import { ButtonLink } from '@/components/ui/Button';
 import { StatusBadge } from '@/components/ui/primitives';
@@ -53,7 +53,7 @@ export default function StartupsPage() {
             </ButtonLink>
           </>
         }
-        media={<StartupSchematic className="mx-auto max-w-md" />}
+        media={<ProductScreenshot screen="launchStartup" crop={0.75} priority className="mx-auto max-w-[22rem]" caption="Launching a startup in the app" />}
       />
 
       <Section tone="raised">
@@ -109,7 +109,7 @@ export default function StartupsPage() {
             />
           </div>
           <Reveal className="lg:pt-24">
-            <ParallaxScreen screen="discoverFeed" className="mx-auto max-w-[22rem]" caption="Popular startups appear in Discover" />
+            <StartupSchematic className="mx-auto max-w-md" />
           </Reveal>
         </div>
       </Section>

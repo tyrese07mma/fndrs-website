@@ -51,7 +51,7 @@ export default function ProPage() {
               </ButtonLink>
             </Reveal>
             <Reveal delay={0.3} className="lg:col-span-5 lg:col-start-8">
-              <ProductScreenshot screen="discoverTop" region={{ y: 0.155, h: 0.13 }} frame="flat" priority sizes="(min-width: 1024px) 460px, 92vw" />
+              <ProductScreenshot screen="discover" region={{ y: 0.165, h: 0.155 }} frame="flat" priority sizes="(min-width: 1024px) 460px, 92vw" />
               <p className="label-mono mt-4 leading-relaxed text-faint">In the app today: paid plans are not available yet</p>
             </Reveal>
           </div>
@@ -104,6 +104,10 @@ export default function ProPage() {
                 ))}
               </ul>
               <p className="mt-6 text-[0.875rem] text-subtle">Planned, not available yet. The final list may change before launch.</p>
+              <figure className="mt-8">
+                <ProductScreenshot screen="analyticsViewers" region={{ y: 0.555, h: 0.205 }} frame="flat" sizes="(min-width: 1024px) 560px, 92vw" />
+                <figcaption className="label-mono mt-3 leading-relaxed text-faint">In the app today: visitor details wait for a paid plan</figcaption>
+              </figure>
               <div className="mt-auto pt-10">
                 <p className="border-t border-dashed border-gold-500/30 pt-5 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-gold-400">
                   Pricing announced before launch

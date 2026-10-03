@@ -23,7 +23,7 @@ export default function ForBuildersPage() {
       eyebrow="For Builders"
       title={['Find something', 'worth building.']}
       lead="You have the skills. FNDRS helps you find the founders and early teams who need exactly them — and the projects worth your evenings, weekends or next career move."
-      heroMedia={<ProductScreenshot screen="discoverGrid" priority className="mx-auto max-w-[22rem] lg:-rotate-[2deg]" />}
+      heroMedia={<ProductScreenshot screen="editProfile" priority className="mx-auto max-w-[22rem] lg:-rotate-[2deg]" caption="Skills — what you bring to a team" />}
       cta={{ href: '/early-access', label: 'Join FNDRS as a Builder' }}
       useCasesTitle="What builders use FNDRS for."
       useCases={[

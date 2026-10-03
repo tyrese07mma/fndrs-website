@@ -60,7 +60,7 @@ const MODULES: { key: PageKey; status: Status; what: string; feeds: string }[] =
 ];
 
 const TABS = [
-  { icon: House, name: 'Start', text: 'Your feed: updates, milestones and looking-for posts from people around your work.' },
+  { icon: House, name: 'Home', text: 'Your feed: updates, milestones and looking-for posts from people around your work.' },
   { icon: Sparkles, name: 'Match', text: 'Smart Match. Pass, superlike or connect — 25 free swipes a day.' },
   { icon: Compass, name: 'Discover', text: 'Startups, opportunities, events, communities, investors, mentors and more.' },
   { icon: MessageCircle, name: 'Inbox', text: 'Conversations with your matches and the people you connect with.' },
@@ -88,7 +88,7 @@ export default function ProductPage() {
         media={
           <div className="mx-auto grid max-w-[34rem] grid-cols-2 items-start gap-4 sm:gap-5">
             <ProductScreenshot screen="welcomeEn" crop={0.82} frame="flat" priority sizes="(min-width: 1024px) 270px, 45vw" caption="Welcome" />
-            <ProductScreenshot screen="discoverTop" crop={0.82} frame="flat" priority sizes="(min-width: 1024px) 270px, 45vw" caption="Discover" className="mt-14 sm:mt-20" />
+            <ProductScreenshot screen="discover" crop={0.82} frame="flat" priority sizes="(min-width: 1024px) 270px, 45vw" caption="Discover" className="mt-14 sm:mt-20" />
           </div>
         }
       />

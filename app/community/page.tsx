@@ -6,6 +6,7 @@ import { FeedTabs } from '@/components/marketing/FeedTabs';
 import { HeroShell } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
+import { ProductScreenshot } from '@/components/product/ProductScreenshot';
 import { PostSchematic } from '@/components/product/Schematics';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow, StatusBadge } from '@/components/ui/primitives';
@@ -172,9 +173,15 @@ export default function CommunityPage() {
       {/* ------------- Feeds: a working tab switcher instead of three boxes */}
       <Section space="tight">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-          <SectionHeading eyebrow="Your feed" title="For you, following, trending." size="sm" className="lg:col-span-5" />
-          <Reveal className="lg:col-span-6 lg:col-start-7">
-            <FeedTabs />
+          <div className="lg:col-span-5">
+            <SectionHeading eyebrow="Your feed" title="For you, following, trending." size="sm" />
+            <Reveal className="mt-10">
+              <FeedTabs />
+            </Reveal>
+          </div>
+          <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-7">
+            <ProductScreenshot screen="home" region={{ y: 0.375, h: 0.265 }} frame="flat" sizes="(min-width: 1024px) 600px, 92vw" />
+            <p className="label-mono mt-4 leading-relaxed text-faint">The home tab in the app · “Hiring” starts a looking-for post</p>
           </Reveal>
         </div>
       </Section>

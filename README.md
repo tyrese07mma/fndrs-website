@@ -43,7 +43,9 @@ All app imagery is the original screenshots: cropped (status bar), with the floa
 node scripts/prepare-assets.mjs <folder-with-originals>
 ```
 
-then register the new file in `lib/screens.ts`. Pages without a matching capture (profile, feed, startup page, Copilot chat) use schematic illustrations from `components/product/Schematics.tsx`, captioned as illustrations — swap them for real screens when available.
+then register the new file in `lib/screens.ts`. Current captures are English (app 2.0.0). The dev button is found near the position listed in `DEV_BUTTON_AT` in the script, so add an entry there for each new screen.
+
+Crops avoid showing account names. Where no capture exists yet (example posts, the structure of a startup page, the Copilot row), the site uses captioned illustrations from `components/product/Schematics.tsx` or quotes the in-app text — swap them for real screens when available.
 
 ## Content rules
 

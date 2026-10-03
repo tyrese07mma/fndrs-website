@@ -6,8 +6,7 @@ import { FAQ } from '@/components/marketing/FAQ';
 import { HeroShell } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
-import { ProductScreenshot } from '@/components/product/ProductScreenshot';
-import { CopilotPrompts } from '@/components/product/Schematics';
+import { CopilotInApp, CopilotPrompts } from '@/components/product/Schematics';
 import { ButtonLink } from '@/components/ui/Button';
 import { StatusBadge } from '@/components/ui/primitives';
 import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
@@ -71,9 +70,7 @@ export default function CopilotPage() {
             </Reveal>
           </div>
           <Reveal delay={0.25} className="lg:col-span-5">
-            <p className="label-mono mb-4 text-subtle">In the app today</p>
-            <ProductScreenshot screen="discoverFeed" region={{ y: 0.225, h: 0.125 }} frame="flat" priority sizes="(min-width: 1024px) 440px, 92vw" />
-            <p className="mt-4 text-[0.875rem] leading-relaxed text-subtle">Copilot already has its place in the Discover tab — marked as not activated, because it isn&rsquo;t.</p>
+            <CopilotInApp />
           </Reveal>
         </div>
       </HeroShell>

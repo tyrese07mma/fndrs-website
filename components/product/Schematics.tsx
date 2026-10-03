@@ -1,4 +1,4 @@
-import { Flag, Heart, MapPin, MessageCircle, Search, Send, TrendingUp, type LucideIcon } from 'lucide-react';
+import { Flag, Heart, MessageCircle, Search, Send, TrendingUp, type LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
@@ -37,56 +37,6 @@ function Block({ label, children }: { label: string; children: ReactNode }) {
       <p className="label-mono text-subtle">{label}</p>
       <div className="mt-3 flex flex-wrap gap-1.5">{children}</div>
     </div>
-  );
-}
-
-/* ---------------------------------------------------------------- */
-
-export function ProfileSchematic({ className }: { className?: string }) {
-  return (
-    <Frame className={className} caption="Illustration · structure of a FNDRS profile">
-      <div className="flex items-center gap-4">
-        <span className="inline-flex size-16 items-center justify-center rounded-full border-2 border-gold-500 bg-[#3a3d2e] text-xl font-semibold">Y</span>
-        <div className="min-w-0">
-          <p className="text-[1.125rem] font-semibold tracking-[-0.02em]">Your name</p>
-          <p className="text-[0.875rem] text-muted">Founder · building in Climate &amp; SaaS</p>
-          <p className="mt-1 flex items-center gap-1 text-[0.75rem] text-subtle">
-            <MapPin className="size-3" aria-hidden /> Your city · Pre-seed
-          </p>
-        </div>
-      </div>
-      <div className="mt-5 grid grid-cols-3 gap-px overflow-hidden rounded-[8px] border hairline bg-white/[0.06] text-center">
-        {[
-          ['Followers', '—'],
-          ['Founder score', '—'],
-          ['Level', 'Lv —'],
-        ].map(([l, v]) => (
-          <div key={l} className="bg-ink-900 px-2 py-3">
-            <p className="font-mono text-[0.9375rem] font-medium">{v}</p>
-            <p className="mt-1 text-[0.6875rem] text-subtle">{l}</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-5 space-y-4">
-        <Block label="Looking for">
-          <MiniChip gold>Technical co-founder</MiniChip>
-          <MiniChip gold>Designers</MiniChip>
-        </Block>
-        <Block label="Skills">
-          <MiniChip>Sales</MiniChip>
-          <MiniChip>Fundraising</MiniChip>
-          <MiniChip>Operations</MiniChip>
-        </Block>
-        <Block label="Industries">
-          <MiniChip>Climate</MiniChip>
-          <MiniChip>SaaS</MiniChip>
-        </Block>
-        <Block label="Open to">
-          <MiniChip>Co-founding</MiniChip>
-          <MiniChip>Advising</MiniChip>
-        </Block>
-      </div>
-    </Frame>
   );
 }
 
@@ -212,6 +162,23 @@ export function StartupSchematic({ className }: { className?: string }) {
         </Block>
       </div>
     </Frame>
+  );
+}
+
+/* ---------------------------------------------------------------- */
+
+/** What the app shows for Copilot today — quoted word for word, not mocked up. */
+export function CopilotInApp({ className }: { className?: string }) {
+  return (
+    <figure className={cn('border-l-2 border-[#7c97c7]/60 pl-6', className)}>
+      <p className="label-mono text-subtle">In the app today · Discover tab</p>
+      <blockquote className="mt-4 text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] font-bold leading-tight tracking-[-0.03em]">
+        &ldquo;Copilot is not enabled yet.&rdquo;
+      </blockquote>
+      <figcaption className="mt-4 max-w-sm text-[0.9375rem] leading-relaxed text-subtle">
+        That is what the FNDRS Copilot entry says in the app — because it isn&rsquo;t switched on yet.
+      </figcaption>
+    </figure>
   );
 }
 

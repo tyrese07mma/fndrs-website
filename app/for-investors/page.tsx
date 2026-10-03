@@ -17,7 +17,7 @@ export default function ForInvestorsPage() {
       eyebrow="For Investors"
       title={["Discover what's", 'being built early.']}
       lead="FNDRS gives angels and early-stage investors a view of founders and teams as they form — with context on the people, the industry, the stage and the progress behind each startup."
-      heroMedia={<ProductScreenshot screen="discoverTop" priority className="mx-auto max-w-[22rem]" />}
+      heroMedia={<ProductScreenshot screen="discover" priority className="mx-auto max-w-[22rem]" />}
       cta={{ href: '/early-access', label: 'Request investor access' }}
       useCasesTitle="Context before the pitch."
       useCasesLead="What you can see on FNDRS, and why it is useful before a first meeting."
