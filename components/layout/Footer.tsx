@@ -6,6 +6,7 @@ import { footerNav, pages } from '@/lib/pages';
 import { site, socialLinks } from '@/lib/site';
 import { ButtonLink } from '@/components/ui/Button';
 import { Container } from '@/components/ui/primitives';
+import { CookieSettingsButton } from '@/components/consent/CookieSettingsButton';
 import { CurrentYear } from './CurrentYear';
 import { Wordmark } from './Wordmark';
 
@@ -51,6 +52,11 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
+                {col.title === 'Legal' && (
+                  <li>
+                    <CookieSettingsButton className="text-left text-[0.875rem] text-muted transition-colors hover:text-ivory" />
+                  </li>
+                )}
               </ul>
             </nav>
           ))}

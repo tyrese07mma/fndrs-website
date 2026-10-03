@@ -53,6 +53,14 @@ then register the new file in `lib/screens.ts`. Pages without a matching capture
 
 ## Cookies & consent
 
-The site currently sets **no cookies**, uses **no local/session storage** and loads **nothing from third parties** (fonts and images are self-hosted). That is why there is no cookie banner, and `/privacy#cookies` says so.
+The site sets **no cookies** and loads **nothing from third parties** (fonts and images are self-hosted). It still ships a consent manager, so services can be added safely later:
 
-If you add anything that needs consent (analytics, pixels, YouTube/Vimeo embeds, external fonts or scripts), you must add a consent manager first: nothing non-essential may load before consent, "Reject" must be as easy as "Accept", and the privacy policy has to be updated in the same change.
+- `lib/consent.ts`: categories (Necessary, Analytics, Marketing, External media), the list of services per category, version and storage.
+- `components/consent/`: banner, settings dialog, `<ConsentGate>` and the footer "Cookie settings" button.
+- The only thing stored is the visitor's choice (`localStorage["fndrs-consent"]`). Optional categories are off by default and currently contain no services; the dialog says so.
+
+**Adding a service that needs consent** (analytics, pixel, YouTube/Vimeo, external fonts or scripts):
+1. add it to `CONSENT_SERVICES` in `lib/consent.ts`
+2. load it only inside `<ConsentGate category="…">` so nothing runs before consent
+3. bump `CONSENT_VERSION` so every visitor is asked again
+4. describe it in `/privacy#cookies`

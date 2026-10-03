@@ -1,6 +1,8 @@
 import Link from 'next/link';
 
+import { CookieSettingsButton } from '@/components/consent/CookieSettingsButton';
 import { LegalAddress, LegalContact, LegalPage } from '@/components/marketing/LegalPage';
+import { CONSENT_STORAGE_KEY } from '@/lib/consent';
 import { pageMetadata } from '@/lib/metadata';
 import { site } from '@/lib/site';
 
@@ -32,13 +34,24 @@ export default function PrivacyPage() {
         Union. Such transfers are based on the EU Standard Contractual Clauses (Art. 46 (2) (c) GDPR).
       </p>
 
-      <h2 id="cookies">3. No cookies, no tracking</h2>
+      <h2 id="cookies">3. Cookies, storage and consent</h2>
       <p>
-        This website does not set cookies and does not store or read any information on your device (no local storage or session storage). It uses no analytics, advertising or
-        tracking services and loads no third-party scripts, embedded videos or external fonts: everything, including fonts and images, is served from our own domain. This is why
-        there is no cookie banner: there is nothing to consent to.
+        This website does not set cookies. It uses no analytics, advertising or tracking services and loads no third-party scripts, embedded videos or external fonts: everything,
+        including fonts and images, is served from our own domain.
       </p>
-      <p>If we ever add a service that needs your consent, we will ask for it before that service is loaded and update this policy.</p>
+      <p>
+        The only thing stored on your device is your choice in the cookie settings, saved in your browser&rsquo;s local storage under the key{' '}
+        <strong>{CONSENT_STORAGE_KEY}</strong> (the categories you allowed and the date of your choice). This is strictly necessary to remember your decision (§ 25 (2) no. 2 TDDDG;
+        Art. 6 (1) (c) and (f) GDPR). It never leaves your device and you can delete it at any time in your browser settings.
+      </p>
+      <p>
+        The optional categories (Analytics, Marketing, External media) are off by default. No services in these categories are in use right now, so allowing them currently loads
+        nothing. If we add a service, it will be listed in the cookie settings and here, it will only be loaded after your consent, and we will ask you again.
+      </p>
+      <p>
+        You can change or withdraw your choice at any time:{' '}
+        <CookieSettingsButton className="font-semibold text-ivory underline decoration-white/25 underline-offset-4 hover:decoration-white/60" />.
+      </p>
 
       <h2>4. Early Access and contact forms</h2>
       <p>

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Michroma } from 'next/font/google';
 import Script from 'next/script';
 import type { ReactNode } from 'react';
 
+import { ConsentProvider } from '@/components/consent/ConsentProvider';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
@@ -45,12 +46,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to content
         </a>
-        <Navbar />
-        <main id="main" className="relative">
-          {children}
-        </main>
-        <Footer />
-        <ScrollToTop />
+        <ConsentProvider>
+          <Navbar />
+          <main id="main" className="relative">
+            {children}
+          </main>
+          <Footer />
+          <ScrollToTop />
+        </ConsentProvider>
         {/* If React has not hydrated after 3s, stop waiting for reveal animations. */}
         <Script id="motion-failsafe" strategy="beforeInteractive">
           {`setTimeout(function(){if(!window.__fndrsHydrated)document.documentElement.classList.add('motion-failsafe')},3000)`}
