@@ -8,6 +8,8 @@ import { Reveal } from '@/components/ui/Reveal';
 
 export interface Step {
   title: string;
+  /** One line for overviews (the step rail). */
+  summary?: string;
   body: ReactNode;
   details?: string[];
   media?: ReactNode;
@@ -22,9 +24,9 @@ export function StepList({ steps }: { steps: Step[] }) {
       {steps.map((s, i) => {
         const n = String(i + 1).padStart(2, '0');
         return (
-          <li key={s.title} id={`step-${n}`} className="border-t hairline py-20 sm:py-28">
+          <li key={s.title} id={`step-${n}`} className="border-t hairline py-16 sm:py-24">
             <Container wide>
-              <div className={cn('grid gap-10 lg:grid-cols-12 lg:gap-16', s.media ? '' : '')}>
+              <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
                 <div className="lg:col-span-3">
                   <div className="lg:sticky lg:top-32">
                     <p className="label-mono text-subtle">Step</p>

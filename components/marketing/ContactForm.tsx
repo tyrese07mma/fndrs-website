@@ -39,7 +39,7 @@ export function ContactForm() {
 
   if (state === 'done') {
     return (
-      <div role="status" className="rounded-[30px] border hairline bg-ink-900 p-8 sm:p-10">
+      <div role="status" className="rounded-[16px] border hairline bg-ink-900 p-8 sm:p-10">
         <span className="inline-flex size-12 items-center justify-center rounded-full bg-ivory text-ink-950">
           <Check className="size-5" aria-hidden />
         </span>
@@ -52,7 +52,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={submit} className="relative space-y-7 rounded-[30px] border hairline bg-ink-900 p-6 sm:p-10">
+    <form onSubmit={submit} className="relative space-y-7 rounded-[16px] border hairline bg-ink-900 p-6 sm:p-10">
       <Honeypot value={honey} onChange={setHoney} />
       <div className="grid gap-6 sm:grid-cols-2">
         <Field label="Name" htmlFor="c-name">
@@ -71,7 +71,7 @@ export function ContactForm() {
       </Field>
       <Consent checked={consent} onChange={setConsent} />
       {state === 'error' && (
-        <p role="alert" className="rounded-[14px] border border-[#e0705f]/30 bg-[#e0705f]/10 px-4 py-3 text-[0.875rem] text-[#f0a597]">
+        <p role="alert" className="rounded-[10px] border border-[#e0705f]/30 bg-[#e0705f]/10 px-4 py-3 text-[0.875rem] text-[#f0a597]">
           {error}
         </p>
       )}

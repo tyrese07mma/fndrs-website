@@ -87,11 +87,11 @@ export function MobileNavigation({ open, onClose, pathname }: { open: boolean; o
                                         href={p.href}
                                         aria-current={pathname === p.href ? 'page' : undefined}
                                         className={cn(
-                                          'flex items-center gap-3.5 rounded-2xl px-1 py-2.5 text-ivory/90',
+                                          'flex items-center gap-3.5 rounded-[8px] px-1 py-2.5 text-ivory/90',
                                           pathname === p.href && 'text-gold-400',
                                         )}
                                       >
-                                        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-[12px] bg-ink-800">
+                                        <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-[8px] bg-ink-800">
                                           <Icon className="size-[18px]" strokeWidth={1.75} aria-hidden />
                                         </span>
                                         <span>

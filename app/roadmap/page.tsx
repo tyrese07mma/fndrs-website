@@ -1,9 +1,8 @@
 import { CTASection } from '@/components/marketing/CTASection';
-import { PageHero } from '@/components/marketing/PageHero';
+import { HeroShell } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
-import { Section } from '@/components/marketing/Section';
-import { StatusBadge, type Status } from '@/components/ui/primitives';
-import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { Container, Eyebrow, StatusBadge, type Status } from '@/components/ui/primitives';
+import { Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/ui/Reveal';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata('roadmap');
@@ -62,47 +61,62 @@ const LEGEND: Status[] = ['live', 'beta', 'dev', 'planned', 'unavailable'];
 export default function RoadmapPage() {
   return (
     <>
-      <PageHero
-        href="/roadmap"
-        eyebrow="Roadmap"
-        title={["What's live.", <span key="x" className="text-subtle">What's next.</span>]}
-        lead="An honest view of FNDRS: what you can use today, what we are working towards and what comes later. There are no release dates on purpose. Order and scope change as we learn from early members."
-        aside={
-          <ul className="flex flex-wrap gap-2" aria-label="Status legend">
-            {LEGEND.map((s) => (
-              <li key={s}>
-                <StatusBadge status={s} />
-              </li>
-            ))}
-          </ul>
-        }
-      />
-      <Section tone="raised" className="!pt-20">
-        <div className="grid gap-6 lg:grid-cols-3">
-          {COLUMNS.map((c, ci) => (
-            <Reveal key={c.key} delay={ci * 0.08} as="section" className="rounded-[28px] border hairline bg-ink-950 p-6 sm:p-8">
-              <div className="flex items-baseline justify-between gap-4">
-                <h2 className="font-display text-[1.125rem] tracking-[0.3em] text-ivory">{c.title.toUpperCase()}</h2>
-                <span className="font-mono text-[0.75rem] text-faint">0{ci + 1}</span>
-              </div>
-              <p className="mt-3 text-[0.9375rem] text-subtle">{c.note}</p>
-              <RevealGroup as="ul" className="mt-8 border-t hairline">
-                {c.items.map((item) => (
-                  <RevealItem as="li" key={item.title} className="border-b hairline py-5 last:border-0 last:pb-0">
-                    <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-                      <h3 className="text-[1.0625rem] font-semibold">{item.title}</h3>
-                      <StatusBadge status={item.status} />
-                    </div>
-                    <p className="mt-2 text-[0.9rem] leading-relaxed text-subtle">{item.text}</p>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
+      {/* ------------- Compact header, then straight into the board */}
+      <HeroShell href="/roadmap" className="pb-10 sm:pb-12">
+        <div className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-5">
+            <Reveal y={10}>
+              <Eyebrow>Roadmap</Eyebrow>
             </Reveal>
-          ))}
+            <TextReveal lines={["What’s live.", <span key="x" className="text-subtle">What&rsquo;s next.</span>]} className="headline-md mt-6" delay={0.05} />
+          </div>
+          <Reveal delay={0.2} className="lg:col-span-6 lg:col-start-7">
+            <p className="text-[1rem] leading-relaxed text-muted">
+              An honest view of FNDRS: what you can use today, what we are working towards and what comes later. There are no release dates on purpose. Order and scope change as we
+              learn from early members.
+            </p>
+            <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2.5" aria-label="Status legend">
+              {LEGEND.map((s) => (
+                <li key={s}>
+                  <StatusBadge status={s} />
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
-      </Section>
+      </HeroShell>
+
+      <div className="pb-20 sm:pb-24">
+        <Container wide>
+          <div className="grid border-t hairline-strong lg:grid-cols-3">
+            {COLUMNS.map((c, ci) => (
+              <Reveal
+                key={c.key}
+                delay={ci * 0.08}
+                as="section"
+                className="hairline pt-8 not-first:mt-12 not-first:border-t lg:px-8 lg:first:pl-0 lg:last:pr-0 lg:not-first:mt-0 lg:not-first:border-l lg:not-first:border-t-0"
+              >
+                <h2 className="font-display text-[1.125rem] tracking-[0.3em] text-ivory">{c.title.toUpperCase()}</h2>
+                <p className="mt-3 text-[0.9375rem] text-subtle">{c.note}</p>
+                <RevealGroup as="ul" className="mt-7 border-t hairline">
+                  {c.items.map((item) => (
+                    <RevealItem as="li" key={item.title} className="border-b hairline py-5">
+                      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                        <h3 className="text-[1.0625rem] font-semibold">{item.title}</h3>
+                        <StatusBadge status={item.status} className="mt-1" />
+                      </div>
+                      <p className="mt-2 text-[0.9rem] leading-relaxed text-subtle">{item.text}</p>
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </div>
+
       <CTASection
-        eyebrow="Shape the roadmap"
+        variant="compact"
         title="Tell us what to build next."
         body="Early members decide a lot of what moves from Later to Now. Join Early Access or send us your feedback."
         secondary={{ href: '/contact', label: 'Send feedback' }}

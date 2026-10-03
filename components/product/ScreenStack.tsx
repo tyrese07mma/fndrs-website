@@ -62,25 +62,34 @@ export function ParallaxScreen({
   className,
   rotate = 0,
   crop,
+  region,
+  frame,
   tone,
   caption,
+  sizes,
+  distance = 50,
 }: {
   screen: ScreenKey;
   className?: string;
   rotate?: number;
   crop?: number;
+  region?: { y: number; h: number };
+  frame?: 'device' | 'flat';
   tone?: 'dark' | 'light';
   caption?: string;
+  sizes?: string;
+  /** Parallax travel in px. */
+  distance?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [50, -50]);
+  const y = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [distance, -distance]);
 
   return (
     <div ref={ref} className={className}>
       <motion.div style={{ y, rotate }}>
-        <ProductScreenshot screen={screen} crop={crop} tone={tone} caption={caption} />
+        <ProductScreenshot screen={screen} crop={crop} region={region} frame={frame} tone={tone} caption={caption} sizes={sizes} />
       </motion.div>
     </div>
   );

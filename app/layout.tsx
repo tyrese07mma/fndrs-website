@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <a
           href="#main"
-          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-ivory px-4 py-2 text-sm font-semibold text-ink-950 focus:translate-y-0"
+          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-[8px] bg-ivory px-4 py-2 text-sm font-semibold text-ink-950 focus:translate-y-0"
         >
           Skip to content
         </a>

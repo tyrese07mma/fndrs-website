@@ -7,7 +7,7 @@ import { cn } from '@/lib/cn';
 
 /** Inputs styled after the app's sign-up fields: dark fill, soft border, 18px radius. */
 const field =
-  'w-full rounded-[18px] border border-white/[0.08] bg-ink-800 px-5 text-[1rem] text-ivory placeholder:text-faint outline-none transition-[border-color,background-color] duration-200 hover:border-white/15 focus:border-gold-500/60 focus:bg-ink-750';
+  'w-full rounded-[10px] border border-white/[0.08] bg-ink-800 px-5 text-[1rem] text-ivory placeholder:text-faint outline-none transition-[border-color,background-color] duration-200 hover:border-white/15 focus:border-gold-500/60 focus:bg-ink-750';
 
 export function Field({ label, hint, children, htmlFor }: { label: string; hint?: string; children: ReactNode; htmlFor: string }) {
   return (

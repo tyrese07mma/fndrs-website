@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 
 import { AudienceCards } from '@/components/marketing/AudienceCards';
 import { CTASection } from '@/components/marketing/CTASection';
 import { ProductLoop } from '@/components/marketing/ProductLoop';
 import { ProductReality } from '@/components/marketing/ProductReality';
 import { Section, SectionHeading } from '@/components/marketing/Section';
+import { ProductScreenshot } from '@/components/product/ProductScreenshot';
 import { ParallaxScreen, ScreenStack } from '@/components/product/ScreenStack';
 import { PostSchematic } from '@/components/product/Schematics';
 import { ArrowLink, ButtonLink } from '@/components/ui/Button';
@@ -93,10 +94,11 @@ export default function HomePage() {
 
       {/* ------------------------------------------------ SMART MATCH */}
       <Section>
-        <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
-          <div>
+        <div className="grid items-end gap-14 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7">
             <SectionHeading
               eyebrow="Smart Match"
+              size="lg"
               title={
                 <>
                   Not more connections.
@@ -110,7 +112,20 @@ export default function HomePage() {
               <ArrowLink href="/smart-match">Explore Smart Match</ArrowLink>
             </Reveal>
           </div>
-          <ScreenStack center="smartMatch" right="discoverFeed" className="max-w-[36rem]" />
+          {/* The real fit-score row from the app, and the two questions behind it. */}
+          <Reveal delay={0.1} className="lg:col-span-5">
+            <ProductScreenshot screen="discoverFeed" region={{ y: 0.73, h: 0.135 }} frame="flat" sizes="(min-width: 1024px) 520px, 92vw" />
+            <p className="label-mono mt-4 text-faint">In the app · fit score with its reason</p>
+            <ul className="mt-8 border-t hairline">
+              {['Has what you are looking for', 'Is looking for what you bring'].map((t) => (
+                <li key={t} className="flex items-center gap-3 border-b hairline py-4 text-[1rem] text-ivory/90">
+                  <Check aria-hidden className="size-4 shrink-0 text-gold-500" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-[0.875rem] text-subtle">Both sides have to fit.</p>
+          </Reveal>
         </div>
       </Section>
 
@@ -123,14 +138,11 @@ export default function HomePage() {
           <div className="lg:col-span-7">
             <SectionHeading eyebrow="Discover" title="Discover more than people." lead="One tab for everything around what you build." />
             <RevealGroup as="ul" className="mt-12 border-t hairline">
-              {DISCOVER.map(([label, href], i) => (
+              {DISCOVER.map(([label, href]) => (
                 <RevealItem as="li" key={label} className="border-b hairline">
                   <Link href={href} className="group flex items-center justify-between gap-6 py-5 sm:py-6">
-                    <span className="flex items-baseline gap-5">
-                      <span className="font-mono text-[0.75rem] text-faint">0{i + 1}</span>
-                      <span className="text-[clamp(1.75rem,1.2rem+2vw,3rem)] font-bold tracking-[-0.035em] text-ivory/85 transition-colors duration-300 group-hover:text-ivory">
-                        {label}
-                      </span>
+                    <span className="text-[clamp(1.75rem,1.2rem+2vw,3rem)] font-bold tracking-[-0.035em] text-ivory/85 transition-colors duration-300 group-hover:text-ivory">
+                      {label}
                     </span>
                     <ArrowUpRight
                       aria-hidden
@@ -159,17 +171,11 @@ export default function HomePage() {
               title="Post with a purpose."
               lead="Every post on FNDRS has a job: share an update, mark a milestone, or say exactly who you are looking for — so the right people can answer."
             />
-            <Reveal delay={0.1} className="mt-8 flex flex-wrap gap-2">
-              {['Update', 'Milestone', 'Looking for'].map((t) => (
-                <span
-                  key={t}
-                  className={
-                    t === 'Looking for'
-                      ? 'inline-flex h-9 items-center rounded-full bg-ivory px-4 text-[0.875rem] font-semibold text-ink-950'
-                      : 'inline-flex h-9 items-center rounded-full border hairline-strong px-4 text-[0.875rem] font-medium text-ivory/80'
-                  }
-                >
-                  {t}
+            <Reveal delay={0.1} className="mt-8 flex flex-wrap gap-x-3 gap-y-2 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-subtle">
+              {['Update', 'Milestone', 'Looking for'].map((t, i) => (
+                <span key={t} className="flex items-center gap-3">
+                  {i > 0 && <span aria-hidden className="text-faint">/</span>}
+                  <span className={t === 'Looking for' ? 'text-ivory' : undefined}>{t}</span>
                 </span>
               ))}
             </Reveal>
@@ -200,17 +206,18 @@ export default function HomePage() {
 
       {/* ------------------------------------------------ COPILOT */}
       <Section tone="raised">
-        <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
-          <div className="order-2 lg:order-1">
-            <ParallaxScreen screen="discoverFeed" crop={0.4} className="mx-auto max-w-[26rem]" />
-          </div>
-          <div className="order-1 lg:order-2">
+        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
+          <Reveal delay={0.1} className="order-2 lg:order-1 lg:col-span-5">
+            <ProductScreenshot screen="discoverFeed" region={{ y: 0.225, h: 0.125 }} frame="flat" sizes="(min-width: 1024px) 520px, 92vw" />
+            <p className="label-mono mt-4 text-faint">In the app today · not activated yet</p>
+          </Reveal>
+          <div className="order-1 lg:order-2 lg:col-span-6 lg:col-start-7">
             <Reveal>
-              <Eyebrow>FNDRS Copilot</Eyebrow>
-              <div className="mt-5">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+                <Eyebrow>FNDRS Copilot</Eyebrow>
                 <StatusBadge status="dev" />
               </div>
-              <h2 className="headline-md mt-6">Your second brain for building.</h2>
+              <h2 className="headline-md mt-6">Built to know what you&rsquo;re building.</h2>
               <p className="lead mt-6 max-w-xl text-muted">
                 Copilot is being built to help you structure ideas, plan next steps and think through decisions — with the context of your
                 profile and your network. It already has a place in the app; it isn&rsquo;t switched on yet.

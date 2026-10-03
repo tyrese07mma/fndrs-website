@@ -40,7 +40,7 @@ export default function ForInvestorsPage() {
       }}
       feature={
         <Section tone="raised">
-          <Reveal className="mx-auto max-w-3xl rounded-[28px] border hairline bg-ink-950 p-8 sm:p-12">
+          <Reveal className="mx-auto max-w-3xl rounded-[16px] border hairline bg-ink-950 p-8 sm:p-12">
             <Eyebrow tone="muted">Important</Eyebrow>
             <h2 className="mt-6 text-[1.75rem] font-bold tracking-[-0.03em]">What FNDRS is not.</h2>
             <div className="mt-5 space-y-4 text-[1rem] leading-relaxed text-muted">

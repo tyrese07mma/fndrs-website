@@ -49,21 +49,41 @@ export function Chip({ children, className, tone = 'dark' }: { children: ReactNo
 
 export type Status = 'live' | 'beta' | 'dev' | 'soon' | 'planned' | 'unavailable';
 
-const STATUS: Record<Status, { label: string; dot: string; cls: string }> = {
-  live: { label: 'In the app', dot: 'bg-[#5aa981]', cls: 'text-[#8fd0ad] border-[#5aa981]/30 bg-[#5aa981]/10' },
-  beta: { label: 'Early beta', dot: 'bg-gold-500', cls: 'text-gold-400 border-gold-500/30 bg-gold-500/10' },
-  dev: { label: 'In development', dot: 'bg-[#7c97c7]', cls: 'text-[#a9bde0] border-[#7c97c7]/30 bg-[#7c97c7]/10' },
-  soon: { label: 'Coming soon', dot: 'bg-muted', cls: 'text-muted border-white/10 bg-white/[0.04]' },
-  planned: { label: 'Planned', dot: 'bg-transparent ring-1 ring-muted', cls: 'text-muted border-white/10 bg-transparent' },
-  unavailable: { label: 'Not available yet', dot: 'bg-transparent ring-1 ring-muted', cls: 'text-muted border-white/10 bg-white/[0.04]' },
+const STATUS: Record<Status, { label: string; dot: string; text: string; border: string }> = {
+  live: { label: 'In the app', dot: 'bg-[#5aa981]', text: 'text-[#8fd0ad]', border: 'border-[#5aa981]/35' },
+  beta: { label: 'Early beta', dot: 'bg-gold-500', text: 'text-gold-400', border: 'border-gold-500/35' },
+  dev: { label: 'In development', dot: 'bg-[#7c97c7]', text: 'text-[#a9bde0]', border: 'border-[#7c97c7]/35' },
+  soon: { label: 'Coming soon', dot: 'bg-muted', text: 'text-muted', border: 'border-white/12' },
+  planned: { label: 'Planned', dot: 'bg-transparent ring-1 ring-muted', text: 'text-muted', border: 'border-white/12' },
+  unavailable: { label: 'Not available yet', dot: 'bg-transparent ring-1 ring-muted', text: 'text-muted', border: 'border-white/12' },
 };
 
-/** Honest feature status. Used wherever something is not fully shipped. */
-export function StatusBadge({ status, label, className }: { status: Status; label?: string; className?: string }) {
+/**
+ * Honest feature status. Typographic by default ("● IN DEVELOPMENT");
+ * `tag` adds a fine outline where the status has to stand apart.
+ */
+export function StatusBadge({
+  status,
+  label,
+  className,
+  variant = 'dot',
+}: {
+  status: Status;
+  label?: string;
+  className?: string;
+  variant?: 'dot' | 'tag';
+}) {
   const s = STATUS[status];
   return (
-    <span className={cn('inline-flex h-6 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 font-mono text-[0.625rem] uppercase tracking-[0.14em]', s.cls, className)}>
-      <span aria-hidden className={cn('size-1.5 rounded-full', s.dot)} />
+    <span
+      className={cn(
+        'inline-flex shrink-0 items-center gap-2 whitespace-nowrap font-mono text-[0.6875rem] uppercase leading-none tracking-[0.14em]',
+        s.text,
+        variant === 'tag' && cn('h-6 rounded-[4px] border px-2', s.border),
+        className,
+      )}
+    >
+      <span aria-hidden className={cn('size-1.5 shrink-0 rounded-full', s.dot)} />
       {label ?? s.label}
     </span>
   );
@@ -74,7 +94,7 @@ export function IconTile({ children, className, tone = 'dark' }: { children: Rea
   return (
     <span
       className={cn(
-        'inline-flex size-11 shrink-0 items-center justify-center rounded-[14px]',
+        'inline-flex size-11 shrink-0 items-center justify-center rounded-[10px]',
         tone === 'dark' && 'bg-ink-700/80 text-ivory',
         tone === 'light' && 'bg-paper-200 text-ink',
         tone === 'gold' && 'bg-gold-500/15 text-gold-400',

@@ -77,13 +77,10 @@ export function AudiencePage({
             <SectionHeading eyebrow={story.eyebrow} title={story.title} className="lg:sticky lg:top-32" />
           </div>
           <div className="space-y-10 lg:col-span-7">
-            {story.points.map(([t, d], i) => (
-              <Reveal key={t} className="grid gap-4 border-t hairline pt-8 sm:grid-cols-[3rem_1fr]">
-                <span className="font-mono text-[0.8125rem] text-gold-500">0{i + 1}</span>
-                <div>
-                  <h3 className="text-[1.5rem] font-bold tracking-[-0.025em]">{t}</h3>
-                  <p className="lead mt-3 text-muted">{d}</p>
-                </div>
+            {story.points.map(([t, d]) => (
+              <Reveal key={t} className="border-t hairline pt-8">
+                <h3 className="text-[1.5rem] font-bold tracking-[-0.025em]">{t}</h3>
+                <p className="lead mt-3 text-muted">{d}</p>
               </Reveal>
             ))}
           </div>

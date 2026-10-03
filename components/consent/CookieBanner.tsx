@@ -19,7 +19,7 @@ export function CookieBanner() {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-x-0 bottom-0 z-[60] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:inset-x-auto sm:left-6 sm:bottom-6 sm:p-0"
     >
-      <div className="w-full rounded-[24px] border hairline-strong bg-ink-900 p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.85)] sm:w-[30rem] sm:p-6">
+      <div className="w-full rounded-[12px] border hairline-strong bg-ink-900 p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.85)] sm:w-[30rem] sm:p-6">
         <p id="cookie-banner-title" className="label-mono text-gold-400">
           Cookies &amp; privacy
         </p>
@@ -41,7 +41,7 @@ export function CookieBanner() {
         <button
           type="button"
           onClick={() => openSettings()}
-          className="mt-3 inline-flex h-10 w-full items-center justify-center rounded-full text-[0.875rem] font-medium text-muted underline-offset-4 transition-colors hover:text-ivory hover:underline"
+          className="mt-3 inline-flex h-10 w-full items-center justify-center rounded-[8px] text-[0.875rem] font-medium text-muted underline-offset-4 transition-colors hover:text-ivory hover:underline"
         >
           Manage preferences
         </button>

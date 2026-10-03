@@ -57,7 +57,7 @@ export function EarlyAccessForm() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-[30px] border hairline bg-ink-900 p-6 sm:p-10">
+    <div className="relative overflow-hidden rounded-[16px] border hairline bg-ink-900 p-6 sm:p-10">
       <AnimatePresence mode="wait" initial={false}>
         {state === 'done' ? (
           <motion.div
@@ -107,7 +107,7 @@ export function EarlyAccessForm() {
             </Field>
             <Consent checked={consent} onChange={setConsent} />
             {state === 'error' && (
-              <p role="alert" className="rounded-[14px] border border-[#e0705f]/30 bg-[#e0705f]/10 px-4 py-3 text-[0.875rem] text-[#f0a597]">
+              <p role="alert" className="rounded-[10px] border border-[#e0705f]/30 bg-[#e0705f]/10 px-4 py-3 text-[0.875rem] text-[#f0a597]">
                 {error}
               </p>
             )}

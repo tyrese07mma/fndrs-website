@@ -1,13 +1,13 @@
 import Image from 'next/image';
 
 import { CTASection } from '@/components/marketing/CTASection';
-import { PageHero } from '@/components/marketing/PageHero';
+import { HeroShell } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
 import { Wordmark } from '@/components/layout/Wordmark';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/primitives';
-import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/ui/Reveal';
 import { pageMetadata } from '@/lib/metadata';
 import { site } from '@/lib/site';
 
@@ -24,35 +24,48 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        href="/about"
-        eyebrow="About FNDRS"
-        size="xl"
-        title={['Ideas are', 'everywhere.']}
-        lead="The right people aren't. FNDRS Society exists to close that gap — for founders, builders, mentors and investors who want to find each other."
-      />
+      {/* ------------- Hero: brand story, type only */}
+      <HeroShell href="/about" className="pb-20 sm:pb-28">
+        <div className="mt-12 sm:mt-16">
+          <Reveal y={10}>
+            <Eyebrow>About FNDRS</Eyebrow>
+          </Reveal>
+          <TextReveal lines={['Ideas are', 'everywhere.']} className="headline-xl mt-8" delay={0.05} />
+          <div className="mt-14 grid gap-6 border-t hairline pt-8 sm:mt-20 lg:grid-cols-12 lg:gap-10">
+            <Reveal delay={0.2} className="lg:col-span-3">
+              <p className="label-mono text-subtle">Why FNDRS exists</p>
+            </Reveal>
+            <Reveal delay={0.25} className="lg:col-span-8 lg:col-start-5">
+              <p className="text-[clamp(1.625rem,1.15rem+2vw,3rem)] font-bold leading-[1.12] tracking-[-0.035em]">
+                The right people aren&rsquo;t.{' '}
+                <span className="text-subtle">FNDRS Society exists to close that gap — for founders, builders, mentors and investors who want to find each other.</span>
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </HeroShell>
 
       {/* ------------- Problem */}
       <Section tone="light">
-        <div className="grid gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-3">
             <Eyebrow tone="ink">The problem</Eyebrow>
           </div>
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 lg:col-start-5">
             <Reveal>
-              <p className="text-[clamp(1.75rem,1.2rem+2.2vw,3.25rem)] font-bold leading-[1.1] tracking-[-0.035em]">
+              <p className="text-[clamp(1.5rem,1.15rem+1.5vw,2.5rem)] font-bold leading-[1.15] tracking-[-0.03em]">
                 Many people have ideas, skills or ambition — but don&rsquo;t find the right people at the right time.
               </p>
             </Reveal>
-            <div className="mt-14 grid gap-10 sm:grid-cols-2">
+            <div className="mt-12 grid gap-8 sm:grid-cols-2 sm:gap-10">
               <Reveal>
-                <p className="lead text-ink-muted">
+                <p className="text-[1.0625rem] leading-relaxed text-ink-muted">
                   The developer who would co-found tomorrow doesn&rsquo;t know the founder two streets away who needs exactly them. The first-time founder doesn&rsquo;t know a single investor. The mentor
                   who could save a team six months never hears about it.
                 </p>
               </Reveal>
               <Reveal delay={0.08}>
-                <p className="lead text-ink-muted">
+                <p className="text-[1.0625rem] leading-relaxed text-ink-muted">
                   Professional networks are built for careers, not for starting things. Social feeds reward reach, not relevance. FNDRS is built for the moment before a team exists — and everything
                   after.
                 </p>
@@ -63,9 +76,8 @@ export default function AboutPage() {
       </Section>
 
       {/* ------------- Mission */}
-      <section className="relative overflow-hidden border-b hairline bg-ink-950 py-32 sm:py-44">
-        <div aria-hidden className="pointer-events-none absolute inset-0 warm-glow" />
-        <div className="relative mx-auto max-w-[96rem] px-5 sm:px-8 lg:px-12">
+      <section className="border-b hairline bg-ink-950 py-24 sm:py-32">
+        <div className="mx-auto max-w-[96rem] px-5 sm:px-8 lg:px-12">
           <Reveal>
             <Eyebrow>Mission</Eyebrow>
             <p className="headline-lg mt-8 max-w-[18ch]">
@@ -75,55 +87,56 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ------------- Values */}
-      <Section>
-        <SectionHeading eyebrow="What we believe" title="Five words we build by." className="mb-16" />
-        <RevealGroup as="ol" className="border-t hairline">
-          {VALUES.map(([t, d], i) => (
-            <RevealItem as="li" key={t} className="grid gap-4 border-b hairline py-8 sm:grid-cols-12 sm:items-baseline sm:py-10">
-              <span className="font-mono text-[0.8125rem] text-faint sm:col-span-1">0{i + 1}</span>
-              <span className="text-[clamp(2.25rem,1.6rem+2.8vw,4.5rem)] font-bold uppercase leading-none tracking-[-0.045em] sm:col-span-5">{t}</span>
-              <span className="text-[1.0625rem] leading-relaxed text-muted sm:col-span-6">{d}</span>
+      {/* ------------- Values: five words, no numbering */}
+      <Section space="tight">
+        <h2 className="label-mono text-subtle">Five words we build by</h2>
+        <RevealGroup as="ul" className="mt-8 border-t hairline">
+          {VALUES.map(([t, d]) => (
+            <RevealItem as="li" key={t} className="grid gap-3 border-b hairline py-7 sm:grid-cols-12 sm:items-baseline sm:gap-6 sm:py-9">
+              <span className="text-[clamp(2.25rem,1.6rem+2.8vw,4.5rem)] font-bold uppercase leading-none tracking-[-0.045em] sm:col-span-6">{t}</span>
+              <span className="max-w-[46ch] text-[1.0625rem] leading-relaxed text-muted sm:col-span-6">{d}</span>
             </RevealItem>
           ))}
         </RevealGroup>
       </Section>
 
-      {/* ------------- How we build */}
-      <Section tone="raised">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-          <SectionHeading
-            eyebrow="How we build FNDRS"
-            title="In public, in beta, with the people it's for."
-            lead="FNDRS is an early product. We say what works, what doesn't yet, and what is still being built — on this site and in the app."
-            action={
-              <ButtonLink href="/roadmap" variant="secondary" arrow>
-                See the roadmap
-              </ButtonLink>
-            }
-          />
-          <div className="space-y-3">
-            {[
-              ['No fake numbers.', 'You will not find invented user counts, logos or testimonials here. When we have real ones, we will show them.'],
-              ['Honest status labels.', 'Features in development are marked as such — Copilot and Pro included.'],
-              ['Built with early members.', 'The first people on FNDRS shape what it becomes. That is what Early Access is for.'],
-            ].map(([t, d]) => (
-              <Reveal key={t} className="rounded-[24px] border hairline bg-ink-950 p-7">
-                <p className="text-[1.125rem] font-semibold">{t}</p>
-                <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{d}</p>
-              </Reveal>
-            ))}
-          </div>
+      {/* ------------- How we build: run-in statements in three columns */}
+      <Section tone="raised" space="tight">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <SectionHeading eyebrow="How we build FNDRS" title="In public, in beta, with the people it's for." size="sm" />
+          <Reveal>
+            <ButtonLink href="/roadmap" variant="secondary" arrow>
+              See the roadmap
+            </ButtonLink>
+          </Reveal>
+        </div>
+        <div className="mt-12 grid gap-10 border-t hairline pt-10 md:grid-cols-3 md:gap-12">
+          {[
+            ['No fake numbers.', 'You will not find invented user counts, logos or testimonials here. When we have real ones, we will show them.'],
+            ['Honest status labels.', 'Features in development are marked as such — Copilot and Pro included. FNDRS is an early product, and we say what works and what doesn’t yet.'],
+            ['Built with early members.', 'The first people on FNDRS shape what it becomes. That is what Early Access is for.'],
+          ].map(([t, d], i) => (
+            <Reveal key={t} delay={i * 0.06}>
+              <p className="text-[1.0625rem] leading-relaxed text-muted">
+                <strong className="font-semibold text-ivory">{t}</strong> {d}
+              </p>
+            </Reveal>
+          ))}
         </div>
       </Section>
 
-      {/* ------------- Brand */}
+      {/* ------------- The name */}
       <Section>
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="grid items-center gap-14 lg:grid-cols-12">
+          <Reveal className="flex flex-wrap items-center gap-8 lg:col-span-5">
+            <Image src="/brand/mark.png" alt="FNDRS mark" width={160} height={132} className="h-24 w-auto sm:h-32" />
+            <Wordmark size={24} className="text-ivory" />
+          </Reveal>
           <SectionHeading
             eyebrow="The name"
             title="FNDRS Society."
             lead="A society, not a platform: a group of people who build, and who are better at it together. Find. Match. Build."
+            className="lg:col-span-6 lg:col-start-7"
             action={
               <p className="text-[0.9375rem] text-subtle">
                 FNDRS Society is designed and developed by{' '}
@@ -139,10 +152,6 @@ export default function AboutPage() {
               </p>
             }
           />
-          <Reveal className="flex flex-col items-center justify-center gap-12 rounded-[30px] border hairline bg-black px-8 py-16">
-            <Image src="/brand/mark.png" alt="FNDRS mark" width={160} height={132} className="h-28 w-auto" />
-            <Wordmark size={28} className="text-ivory" />
-          </Reveal>
         </div>
       </Section>
 

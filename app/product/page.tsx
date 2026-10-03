@@ -6,7 +6,6 @@ import { PageHero } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
 import { ProductScreenshot } from '@/components/product/ProductScreenshot';
-import { ScreenStack } from '@/components/product/ScreenStack';
 import { ButtonLink } from '@/components/ui/Button';
 import { StatusBadge, type Status } from '@/components/ui/primitives';
 import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
@@ -86,7 +85,12 @@ export default function ProductPage() {
             </ButtonLink>
           </>
         }
-        media={<ScreenStack center="discoverTop" left="welcomeEn" right="smartMatch" priority />}
+        media={
+          <div className="mx-auto grid max-w-[34rem] grid-cols-2 items-start gap-4 sm:gap-5">
+            <ProductScreenshot screen="welcomeEn" crop={0.82} frame="flat" priority sizes="(min-width: 1024px) 270px, 45vw" caption="Welcome" />
+            <ProductScreenshot screen="discoverTop" crop={0.82} frame="flat" priority sizes="(min-width: 1024px) 270px, 45vw" caption="Discover" className="mt-14 sm:mt-20" />
+          </div>
+        }
       />
 
       {/* ---------------- Modules */}
@@ -97,15 +101,14 @@ export default function ProductPage() {
           lead="Each part of FNDRS has its own page here. Start wherever you are curious — they all link back into each other."
         />
         <RevealGroup as="ul" className="mt-16 border-t hairline">
-          {MODULES.map((m, i) => {
+          {MODULES.map((m) => {
             const p = pages[m.key];
             const Icon = p.icon;
             return (
               <RevealItem as="li" key={m.key} className="border-b hairline">
                 <Link href={p.href} className="group grid items-start gap-5 py-8 transition-colors sm:py-10 lg:grid-cols-12 lg:gap-8">
-                  <span className="font-mono text-[0.8125rem] text-faint lg:col-span-1 lg:pt-2">0{i + 1}</span>
-                  <span className="flex items-center gap-4 lg:col-span-4">
-                    <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-ink-700/80 transition-colors group-hover:bg-ivory group-hover:text-ink-950">
+                  <span className="flex items-center gap-4 lg:col-span-5">
+                    <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-[10px] bg-ink-700/80 transition-colors group-hover:bg-ivory group-hover:text-ink-950">
                       <Icon className="size-5" strokeWidth={1.75} aria-hidden />
                     </span>
                     <span className="text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] font-bold tracking-[-0.03em]">{p.label}</span>
@@ -115,7 +118,7 @@ export default function ProductPage() {
                     <span className="mt-2 block font-mono text-[0.75rem] uppercase tracking-[0.12em] text-faint">{m.feeds}</span>
                   </span>
                   <span className="flex items-center justify-between gap-4 lg:col-span-2 lg:flex-col lg:items-end lg:pt-2">
-                    <StatusBadge status={m.status} />
+                    <StatusBadge status={m.status} variant="tag" />
                     <ArrowRight aria-hidden className="size-5 text-faint transition-all duration-300 group-hover:translate-x-1 group-hover:text-ivory" />
                   </span>
                 </Link>
@@ -134,7 +137,7 @@ export default function ProductPage() {
             lead="Everything on FNDRS starts with what you tell it: what you can do, what you are building and who you are looking for. That one profile powers matching, discovery and every conversation after."
           />
           <Reveal>
-            <ol className="relative space-y-3">
+            <ol className="border-t hairline-strong">
               {[
                 ['Profile', 'Skills, role, industries, stage, looking for, open to.'],
                 ['Smart Match + Discover', 'Use your profile to rank people, startups and opportunities by relevance.'],
@@ -142,7 +145,7 @@ export default function ProductPage() {
                 ['Community', 'Updates and milestones show what happened next.'],
                 ['Back to your profile', 'Your startups, posts and progress make the next match better.'],
               ].map(([t, d], i) => (
-                <li key={t} className="flex gap-5 rounded-[22px] border hairline bg-ink-900 p-5 sm:p-6">
+                <li key={t} className="flex gap-5 border-b hairline py-5">
                   <span className="font-mono text-[0.8125rem] text-gold-500">{String(i + 1).padStart(2, '0')}</span>
                   <span>
                     <span className="block text-[1.0625rem] font-semibold">{t}</span>
@@ -160,12 +163,12 @@ export default function ProductPage() {
         <div className="grid items-center gap-16 lg:grid-cols-[1fr_0.8fr] lg:gap-24">
           <div>
             <SectionHeading eyebrow="Inside the app" tone="light" title="Five tabs. Nothing you don't need." />
-            <RevealGroup as="ul" className="mt-12 space-y-px overflow-hidden rounded-[24px] border border-ink/10 bg-ink/10">
+            <RevealGroup as="ul" className="mt-12 space-y-px overflow-hidden rounded-[12px] border border-ink/10 bg-ink/10">
               {TABS.map((t) => {
                 const Icon = t.icon;
                 return (
                   <RevealItem as="li" key={t.name} className="flex gap-5 bg-paper-50 p-5 sm:p-6">
-                    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-[14px] bg-paper-200 text-ink">
+                    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-[10px] bg-paper-200 text-ink">
                       <Icon className="size-5" strokeWidth={1.75} aria-hidden />
                     </span>
                     <span>

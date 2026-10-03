@@ -15,22 +15,22 @@ const AUDIENCES: { key: PageKey; title: string; line: string }[] = [
 export function AudienceCards() {
   return (
     <RevealGroup as="ul" className="grid gap-3 sm:grid-cols-2">
-      {AUDIENCES.map((a, i) => {
+      {AUDIENCES.map((a) => {
         const Icon = pages[a.key].icon;
         return (
           <RevealItem as="li" key={a.key}>
             <Link
               href={pages[a.key].href}
-              className="group relative flex min-h-[17rem] flex-col justify-between overflow-hidden rounded-[28px] border hairline bg-ink-900 p-7 transition-colors duration-500 hover:border-white/15 hover:bg-ink-850 sm:min-h-[22rem] sm:p-10"
+              className="group relative flex min-h-[17rem] flex-col justify-between overflow-hidden rounded-[16px] border hairline bg-ink-900 p-7 transition-colors duration-500 hover:border-white/15 hover:bg-ink-850 sm:min-h-[22rem] sm:p-10"
             >
               <div className="flex items-start justify-between">
-                <span className="font-mono text-[0.8125rem] text-faint">0{i + 1}</span>
-                <span className="inline-flex size-11 items-center justify-center rounded-full border hairline-strong text-muted transition-all duration-500 ease-out-expo group-hover:rotate-45 group-hover:border-ivory group-hover:bg-ivory group-hover:text-ink-950">
-                  <ArrowUpRight className="size-5" aria-hidden />
-                </span>
+                <Icon aria-hidden strokeWidth={1.5} className="size-7 text-gold-500" />
+                <ArrowUpRight
+                  aria-hidden
+                  className="size-6 text-faint transition-all duration-500 ease-out-expo group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-ivory"
+                />
               </div>
               <div>
-                <Icon aria-hidden strokeWidth={1.5} className="mb-6 size-7 text-gold-500" />
                 <h3 className="text-[clamp(2.25rem,1.6rem+2.6vw,4rem)] font-bold uppercase leading-none tracking-[-0.04em]">{a.title}</h3>
                 <p className="mt-4 max-w-[30ch] text-[1rem] leading-relaxed text-muted">{a.line}</p>
               </div>

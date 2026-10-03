@@ -1,4 +1,4 @@
-import { Compass, MessageSquareText, Sparkles, Users } from 'lucide-react';
+import { Compass, LayoutGrid, MessageSquareText, Users } from 'lucide-react';
 
 import { Breadcrumbs } from '@/components/marketing/Breadcrumbs';
 import { EarlyAccessForm } from '@/components/marketing/EarlyAccessForm';
@@ -85,7 +85,7 @@ export default function EarlyAccessPage() {
               text: 'Founders and aspiring founders, developers, designers, marketers, product and business people, mentors and investors. Anyone who wants to build something with others.',
             },
             {
-              icon: Sparkles,
+              icon: LayoutGrid,
               title: 'What you get',
               text: 'A FNDRS account with the full free feature set: your profile, Smart Match, Discover, the community feed and messaging with your matches.',
               href: '/product',

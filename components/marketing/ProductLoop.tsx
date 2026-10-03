@@ -32,7 +32,7 @@ export function ProductLoop() {
           </RevealItem>
         ))}
       </RevealGroup>
-      <p className="mt-12 inline-flex items-center gap-2.5 rounded-full border border-ink/10 bg-paper-50 px-4 py-2 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-ink-muted">
+      <p className="mt-12 inline-flex items-center gap-2.5 border-t border-ink/15 pt-5 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-ink-muted">
         <RotateCcw aria-hidden className="size-3.5" /> And around again — a bigger network, better matches
       </p>
     </div>

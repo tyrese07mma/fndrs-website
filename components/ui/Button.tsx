@@ -8,22 +8,23 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'gold' | 'dark';
 type Size = 'sm' | 'md' | 'lg';
 
 const base =
-  'group/btn relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold tracking-[-0.01em] transition-[background-color,color,border-color,transform,box-shadow] duration-300 ease-out-expo active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50';
+  'group/btn relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap font-semibold tracking-[-0.01em] transition-[background-color,color,border-color,transform] duration-300 ease-out-expo active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50';
 
 const variants: Record<Variant, string> = {
-  // The app's ivory pill ("Create account").
-  primary: 'bg-ivory text-ink-950 hover:bg-white shadow-[0_1px_0_rgba(255,255,255,0.4)_inset,0_10px_30px_-12px_rgba(245,242,234,0.35)]',
-  secondary: 'border hairline-strong bg-white/[0.03] text-ivory hover:bg-white/[0.07] hover:border-white/25 backdrop-blur',
+  // The app's ivory primary action ("Create account"), squared off for the web.
+  primary: 'bg-ivory text-ink-950 hover:bg-white shadow-[0_1px_0_rgba(255,255,255,0.4)_inset]',
+  secondary: 'border hairline-strong bg-white/[0.03] text-ivory hover:bg-white/[0.07] hover:border-white/25',
   ghost: 'text-muted hover:text-ivory',
-  gold: 'bg-gradient-to-b from-gold-400 to-gold-600 text-[#221a08] hover:brightness-105',
+  gold: 'bg-gold-500 text-[#221a08] hover:bg-gold-400',
   // For light (paper) sections.
   dark: 'bg-ink text-paper hover:bg-black',
 };
 
+// Moderate radii: buttons read as controls, not as pills.
 const sizes: Record<Size, string> = {
-  sm: 'h-9 px-4 text-[0.8125rem]',
-  md: 'h-11 px-5 text-[0.9375rem]',
-  lg: 'h-14 px-7 text-base',
+  sm: 'h-9 rounded-[8px] px-4 text-[0.8125rem]',
+  md: 'h-11 rounded-[10px] px-5 text-[0.9375rem]',
+  lg: 'h-14 rounded-[12px] px-7 text-base',
 };
 
 interface Props extends Omit<ComponentProps<typeof Link>, 'className'> {

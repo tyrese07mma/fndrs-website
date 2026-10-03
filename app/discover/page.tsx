@@ -1,226 +1,296 @@
-import { BookOpen, Briefcase, CalendarDays, GraduationCap, Search, TrendingUp, Trophy, Users } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, BookOpen, Briefcase, CalendarDays, GraduationCap, Search, TrendingUp, Trophy, Users, type LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import { EditorialSection } from '@/components/marketing/EditorialSection';
-import { PageHero } from '@/components/marketing/PageHero';
+import { HeroShell } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
-import { Section, SectionHeading } from '@/components/marketing/Section';
+import { Section } from '@/components/marketing/Section';
 import { UseCaseGrid } from '@/components/marketing/UseCaseGrid';
-import { ParallaxScreen } from '@/components/product/ScreenStack';
 import { ProductScreenshot } from '@/components/product/ProductScreenshot';
 import { StartupSchematic } from '@/components/product/Schematics';
 import { ButtonLink } from '@/components/ui/Button';
-import { FeatureStatus } from '@/components/ui/FeatureStatus';
-import { StatusBadge } from '@/components/ui/primitives';
-import { Reveal } from '@/components/ui/Reveal';
+import { Container, Eyebrow, StatusBadge, type Status } from '@/components/ui/primitives';
+import { Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/ui/Reveal';
 import { pageMetadata } from '@/lib/metadata';
+import type { ScreenKey } from '@/lib/screens';
 
 export const metadata = pageMetadata('discover');
 
-const CHAPTERS: {
+/** Three slices of the real Discover tab, side by side (same height, so they line up). */
+const BAND: { screen: ScreenKey; region: { y: number; h: number }; label: string }[] = [
+  { screen: 'discoverTop', region: { y: 0.02, h: 0.55 }, label: 'Search · Startups · Events' },
+  { screen: 'discoverGrid', region: { y: 0.33, h: 0.55 }, label: 'Investors · Mentors · Knowledge' },
+  { screen: 'discoverFeed', region: { y: 0.32, h: 0.55 }, label: 'Founders that fit you' },
+];
+
+/** The five areas that work in the app and fill up as members join. */
+const AREAS: {
   id: string;
   label: string;
-  title: ReactNode;
+  icon: LucideIcon;
+  title: string;
   body: ReactNode;
+  status: Status;
+  statusLabel?: string;
+  itemsLabel?: string;
+  items: string[];
+  note?: ReactNode;
   links: { href: string; label: string }[];
-  media?: ReactNode;
 }[] = [
-  {
-    id: 'founders',
-    label: 'Founders',
-    title: 'Founders who fit what you are building.',
-    body: (
-      <>
-        <p>Discover surfaces founders that fit you right on the main tab — with a fit score and the one reason that matters most, like &ldquo;Has the skills you are looking for&rdquo;.</p>
-        <p>Open any profile to see what someone is building, what they can do and who they are looking for. If it clicks, connect.</p>
-      </>
-    ),
-    links: [
-      { href: '/profiles', label: 'Founder Profiles' },
-      { href: '/smart-match', label: 'Smart Match' },
-    ],
-    media: <ParallaxScreen screen="discoverFeed" className="mx-auto max-w-[22rem]" rotate={-1.5} caption="Discover · founders that fit you" />,
-  },
-  {
-    id: 'startups',
-    label: 'Startups',
-    title: 'Launches and projects, early.',
-    body: (
-      <>
-        <p>Every startup on FNDRS has its own page: what it does, its industry and stage, the team and the skills it still needs. Popular and new startups show up in Discover.</p>
-        <p>For builders it is a list of places to contribute. For investors and mentors it is a window into what is being built before it is everywhere.</p>
-      </>
-    ),
-    links: [
-      { href: '/startups', label: 'Startup Profiles' },
-      { href: '/for-builders', label: 'For Builders' },
-    ],
-    media: <StartupSchematic className="mx-auto max-w-md" />,
-  },
   {
     id: 'communities',
     label: 'Communities',
+    icon: Users,
     title: 'Spaces by topic, not by follower count.',
     body: (
       <>
         <p>Communities group people around a theme — an industry, a craft, a stage. Join the ones that match your work, see who else is there and post to the people who actually care.</p>
-        <p>Each space has its own members, rules and posts, and it can be public or private.</p>
+        <p className="text-subtle">In the app, communities are called spaces. They fill up as early members join and start them.</p>
       </>
     ),
+    status: 'beta',
+    statusLabel: 'In the app · early beta',
+    items: ['Browse and join spaces by topic', 'See who else is a member', 'Post to the people in a space', 'Public and private spaces'],
     links: [{ href: '/community', label: 'Community & Feed' }],
-    media: (
-      <FeatureStatus
-        status="beta"
-        statusLabel="In the app · early beta"
-        icon={Users}
-        title="Spaces"
-        description="In the app, communities are called spaces. They fill up as early members join and start them."
-        items={['Browse and join spaces by topic', 'See who else is a member', 'Post to the people in a space', 'Public and private spaces']}
-      />
-    ),
   },
   {
     id: 'events',
     label: 'Events',
+    icon: CalendarDays,
     title: 'Pitch nights and meetups.',
     body: (
       <>
-        <p>Events lists pitch nights, meetups and online sessions — with date, place or link, and who is going. RSVP in a tap.</p>
-        <p>Members can host events too. The best introductions still happen in a room; FNDRS just helps you find the right room.</p>
+        <p>Events lists pitch nights, meetups and online sessions — with date, place or link, and who is going. RSVP in a tap. Members can host events too.</p>
+        <p className="text-subtle">Events work in the app today. Listings grow as members host founder meetups, pitch nights and demo days.</p>
       </>
     ),
+    status: 'beta',
+    statusLabel: 'In the app · early beta',
+    items: ['Pitch nights, meetups and online sessions', 'RSVP and see who is going', 'Host your own event'],
     links: [
       { href: '/how-it-works', label: 'How FNDRS works' },
       { href: '/for-mentors', label: 'Hosting as a mentor' },
     ],
-    media: (
-      <FeatureStatus
-        status="beta"
-        statusLabel="In the app · early beta"
-        icon={CalendarDays}
-        title="Events"
-        description="Events work in the app today. Listings grow as members host founder meetups, pitch nights and demo days."
-        items={['Pitch nights, meetups and online sessions', 'RSVP and see who is going', 'Host your own event']}
-      />
-    ),
   },
   {
     id: 'mentors',
     label: 'Mentors',
+    icon: GraduationCap,
     title: 'Book one-on-ones with people who have done it.',
     body: (
       <>
         <p>The Mentors section is for people who want to give back: operators, repeat founders, specialists. See what they know, what they are open to, and reach out when your question matches their experience.</p>
+        <p className="text-subtle">The mentor section is live in the app. It grows as experienced operators and founders join during the beta.</p>
       </>
     ),
+    status: 'beta',
+    statusLabel: 'In the app · early beta',
+    items: ['Mentor profiles with their expertise', 'Book a one-on-one session in the app'],
     links: [{ href: '/for-mentors', label: 'For Mentors' }],
-    media: (
-      <FeatureStatus
-        status="beta"
-        statusLabel="In the app · early beta"
-        icon={GraduationCap}
-        title="Mentors"
-        description="The mentor section is live in the app. It grows as experienced operators and founders join during the beta."
-        items={['Mentor profiles with their expertise', 'Book a one-on-one session in the app']}
-      />
-    ),
   },
   {
     id: 'investors',
     label: 'Investors',
+    icon: TrendingUp,
     title: 'Personal introductions, not cold inboxes.',
     body: (
       <>
         <p>The Investors section shows angels and funds on FNDRS and what they focus on. The idea is simple: meet investors through people who already know you, with your profile and progress as context.</p>
-        <p>FNDRS does not broker investments and makes no promises about funding.</p>
+        <p className="text-subtle">FNDRS does not broker investments and makes no promises about funding. Requesting a warm introduction is planned as part of FNDRS Pro, which is not available yet.</p>
       </>
+    ),
+    status: 'beta',
+    statusLabel: 'In the app · early beta',
+    items: ['Investor profiles with firm and check size', 'Filter investors by what they focus on'],
+    note: (
+      <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
+        Warm intro requests <StatusBadge status="unavailable" />
+      </span>
     ),
     links: [
       { href: '/for-investors', label: 'For Investors' },
       { href: '/startups', label: 'Startup Profiles' },
     ],
-    media: (
-      <FeatureStatus
-        status="beta"
-        statusLabel="In the app · early beta"
-        icon={TrendingUp}
-        title="Investors"
-        description="Investor profiles are in the app. Requesting a warm introduction is planned as part of FNDRS Pro, which is not available yet."
-        items={['Investor profiles with firm and check size', 'Filter investors by what they focus on']}
-        note={
-          <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <StatusBadge status="unavailable" /> Warm intro requests
-          </span>
-        }
-      />
-    ),
   },
   {
     id: 'opportunities',
     label: 'Opportunities',
+    icon: Briefcase,
     title: 'Jobs, co-founder searches and more.',
     body: (
       <>
         <p>Opportunities collects concrete asks in one place — from &ldquo;looking for a co-founder&rdquo; to open roles and partnerships. Anyone can post one; anyone can answer.</p>
+        <p className="text-subtle">Concrete asks, posted by members. Listings grow as more teams join the beta.</p>
       </>
     ),
+    status: 'live',
+    itemsLabel: 'Opportunity types',
+    items: ['Co-founder', 'Hiring', 'Partnership', 'Investment', 'Freelance', 'Accelerator'],
     links: [
       { href: '/community', label: 'Looking-for posts' },
       { href: '/for-builders', label: 'For Builders' },
     ],
-    media: (
-      <FeatureStatus
-        status="live"
-        icon={Briefcase}
-        title="Opportunities"
-        description="Concrete asks, posted by members. Listings grow as more teams join the beta."
-        itemsLabel="Opportunity types"
-        items={['Co-founder', 'Hiring', 'Partnership', 'Investment', 'Freelance', 'Accelerator']}
-      />
-    ),
   },
+];
+
+const SECTIONS = [
+  { id: 'founders', label: 'Founders' },
+  { id: 'startups', label: 'Startups' },
+  ...AREAS.map((a) => ({ id: a.id, label: a.label })),
 ];
 
 export default function DiscoverPage() {
   return (
     <>
-      <PageHero
-        href="/discover"
-        eyebrow="Discover"
-        title={['One place for the', 'people, ideas and', 'opportunities around', <span key="x" className="text-subtle">what you&rsquo;re building.</span>]}
-        lead="Smart Match brings people to you. Discover is where you go looking yourself — across founders, startups, communities, events, mentors, investors and opportunities."
-        aside={<StatusBadge status="live" label="In the app · early beta" />}
-        actions={
-          <ButtonLink href="#founders" size="lg" variant="secondary">
-            Start the tour
-          </ButtonLink>
-        }
-        media={<ProductScreenshot screen="discoverTop" priority className="mx-auto max-w-[22rem] lg:rotate-[2deg]" />}
-      />
+      {/* ------------- Hero: wide headline, then a band of real Discover screens cut by the edge */}
+      <HeroShell href="/discover">
+        <div className="mt-12 sm:mt-14">
+          <Reveal y={10} className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <Eyebrow>Discover</Eyebrow>
+            <StatusBadge status="live" label="In the app · early beta" />
+          </Reveal>
+          <TextReveal
+            lines={['One place for the people,', 'ideas and opportunities', <span key="x" className="text-subtle">around what you&rsquo;re building.</span>]}
+            className="headline-lg mt-8"
+            delay={0.05}
+          />
+          <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:items-end">
+            <Reveal delay={0.25} className="lg:col-span-6">
+              <p className="lead max-w-[38rem] text-muted">
+                Smart Match brings people to you. Discover is where you go looking yourself — across founders, startups, communities, events, mentors, investors and opportunities.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3} className="lg:col-span-6 lg:justify-self-end">
+              <ButtonLink href="#founders" size="lg" variant="secondary">
+                Start the tour
+              </ButtonLink>
+            </Reveal>
+          </div>
+        </div>
 
-      <nav aria-label="Discover sections" className="sticky top-[var(--nav-h)] z-30 border-y hairline bg-ink-950/85 backdrop-blur-xl">
-        <ul className="no-scrollbar mx-auto flex max-w-[96rem] gap-1 overflow-x-auto px-5 py-3 sm:px-8 lg:px-12">
-          {CHAPTERS.map((c, i) => (
-            <li key={c.id}>
-              <a href={`#${c.id}`} className="inline-flex h-9 items-center gap-2 whitespace-nowrap rounded-full px-4 text-[0.8125rem] font-medium text-muted transition-colors hover:bg-white/[0.05] hover:text-ivory">
-                <span className="font-mono text-[0.6875rem] text-faint">0{i + 1}</span>
-                {c.label}
+        <RevealGroup
+          as="ul"
+          className="no-scrollbar -mx-5 -mb-20 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 sm:-mx-8 sm:mt-16 sm:px-8 md:mx-0 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:px-0 lg:-mb-28"
+        >
+          {BAND.map((b, i) => (
+            <RevealItem as="li" key={b.screen} className="w-[72vw] max-w-[20rem] shrink-0 snap-center md:w-auto md:max-w-none">
+              <p className="label-mono mb-4 text-subtle">{b.label}</p>
+              <ProductScreenshot screen={b.screen} region={b.region} frame="flat" priority={i === 0} sizes="(min-width: 768px) 32vw, 72vw" />
+            </RevealItem>
+          ))}
+        </RevealGroup>
+      </HeroShell>
+
+      <nav aria-label="Discover sections" className="sticky top-[var(--nav-h)] z-30 border-y hairline bg-ink-950/95">
+        <ul className="no-scrollbar mx-auto flex max-w-[96rem] overflow-x-auto px-5 sm:px-8 lg:px-12">
+          {SECTIONS.map((s) => (
+            <li key={s.id} className="first:*:pl-0">
+              <a
+                href={`#${s.id}`}
+                className="inline-flex h-12 items-center whitespace-nowrap px-3.5 text-[0.8125rem] font-medium text-muted transition-colors hover:text-ivory"
+              >
+                {s.label}
               </a>
             </li>
           ))}
         </ul>
       </nav>
 
-      <div>
-        {CHAPTERS.map((c, i) => (
-          <EditorialSection key={c.id} id={c.id} index={`0${i + 1}`} label={`Discover ${c.label}`} title={c.title} links={c.links} media={c.media} flip={i % 2 === 1}>
-            {c.body}
-          </EditorialSection>
-        ))}
-      </div>
+      {/* ------------- Founders: the real fit-score row, large */}
+      <EditorialSection
+        id="founders"
+        label="Discover Founders"
+        title="Founders who fit what you are building."
+        links={[
+          { href: '/profiles', label: 'Founder Profiles' },
+          { href: '/smart-match', label: 'Smart Match' },
+        ]}
+        media={
+          <Reveal>
+            <ProductScreenshot screen="discoverFeed" region={{ y: 0.66, h: 0.21 }} frame="flat" sizes="(min-width: 1024px) 720px, 92vw" />
+            <p className="label-mono mt-4 leading-relaxed text-faint">In the app · a fit score and the one reason that matters most</p>
+          </Reveal>
+        }
+      >
+        <p>Discover surfaces founders that fit you right on the main tab — with a fit score and the one reason that matters most, like &ldquo;Has the skills you are looking for&rdquo;.</p>
+        <p>Open any profile to see what someone is building, what they can do and who they are looking for. If it clicks, connect.</p>
+      </EditorialSection>
 
-      <Section tone="raised">
-        <SectionHeading eyebrow="Also in Discover" title="The things that keep you moving." className="mb-14" />
+      <EditorialSection
+        id="startups"
+        label="Discover Startups"
+        title="Launches and projects, early."
+        flip
+        links={[
+          { href: '/startups', label: 'Startup Profiles' },
+          { href: '/for-builders', label: 'For Builders' },
+        ]}
+        media={<StartupSchematic className="mx-auto max-w-md" />}
+      >
+        <p>Every startup on FNDRS has its own page: what it does, its industry and stage, the team and the skills it still needs. Popular and new startups show up in Discover.</p>
+        <p>For builders it is a list of places to contribute. For investors and mentors it is a window into what is being built before it is everywhere.</p>
+      </EditorialSection>
+
+      {/* ------------- Five areas as a ruled status board */}
+      <section aria-labelledby="areas-title" className="border-t hairline py-20 sm:py-24">
+        <Container wide>
+          <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <h2 id="areas-title" className="headline-md lg:col-span-7">
+              Five more areas. <span className="text-subtle">In the app, filling up.</span>
+            </h2>
+            <p className="lead text-muted lg:col-span-5">These sections work in the app today. They grow as early members join, host and post during the beta.</p>
+          </Reveal>
+          <ul className="mt-14 border-t hairline-strong">
+            {AREAS.map((a) => {
+              const Icon = a.icon;
+              return (
+                <li key={a.id} id={a.id} className="scroll-mt-14 border-b hairline">
+                  <Reveal className="grid gap-6 py-10 lg:grid-cols-12 lg:gap-10">
+                    <div className="flex flex-wrap items-center justify-between gap-4 lg:col-span-3 lg:block">
+                      <p className="flex items-center gap-3 text-[1.0625rem] font-semibold">
+                        <Icon className="size-[18px] text-gold-500" strokeWidth={1.75} aria-hidden />
+                        {a.label}
+                      </p>
+                      <StatusBadge status={a.status} label={a.statusLabel} className="lg:mt-4" />
+                    </div>
+                    <div className="lg:col-span-5">
+                      <h3 className="text-[clamp(1.5rem,1.2rem+1vw,2rem)] font-bold leading-[1.1] tracking-[-0.03em]">{a.title}</h3>
+                      <div className="mt-4 space-y-3 text-[1rem] leading-relaxed text-muted">{a.body}</div>
+                      <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                        {a.links.map((l) => (
+                          <li key={l.href + l.label}>
+                            <Link href={l.href} className="group inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-ivory/90 hover:text-ivory">
+                              {l.label}
+                              <ArrowRight aria-hidden className="size-3.5 opacity-60 transition-transform group-hover:translate-x-0.5" />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="lg:col-span-4">
+                      <p className="label-mono text-faint">{a.itemsLabel ?? 'In the app today'}</p>
+                      <ul className="mt-4 space-y-2.5">
+                        {a.items.map((item) => (
+                          <li key={item} className="flex gap-3 text-[0.9375rem] leading-snug text-ivory/85">
+                            <span aria-hidden className="mt-[0.45em] size-1.5 shrink-0 rounded-full bg-gold-500" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                      {a.note && <div className="mt-5 text-[0.875rem] text-subtle">{a.note}</div>}
+                    </div>
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </section>
+
+      {/* ------------- Also in Discover */}
+      <Section tone="raised" space="tight">
+        <h2 className="headline-sm mb-12">Also in Discover.</h2>
         <UseCaseGrid
           items={[
             { icon: Search, title: 'Search everything', text: 'One search across founders, startups, communities and events.' },
@@ -230,20 +300,22 @@ export default function DiscoverPage() {
         />
       </Section>
 
+      {/* ------------- Discover vs. Smart Match: two statements, one rule between them */}
       <Section>
-        <div className="grid items-center gap-14 lg:grid-cols-2">
-          <SectionHeading
-            eyebrow="Discover vs. Smart Match"
-            title="Browse when you're curious. Match when you're ready."
-            lead="Discover is open-ended exploration. Smart Match is a short daily list of people who fit. Most people use both."
-            action={
-              <ButtonLink href="/smart-match" arrow>
-                Explore Smart Match
-              </ButtonLink>
-            }
-          />
-          <Reveal>
-            <ProductScreenshot screen="discoverGrid" crop={0.62} className="mx-auto max-w-[24rem]" />
+        <h2 className="label-mono text-subtle">Discover vs. Smart Match</h2>
+        <div className="mt-6 grid border-t hairline-strong md:grid-cols-2">
+          <Reveal className="py-10 md:pr-12">
+            <p className="label-mono text-subtle">Discover</p>
+            <p className="headline-md mt-5">Browse when you&rsquo;re curious.</p>
+            <p className="lead mt-5 max-w-md text-muted">Open-ended exploration across everything on FNDRS, whenever you feel like looking.</p>
+          </Reveal>
+          <Reveal delay={0.08} className="border-t hairline-strong py-10 md:border-l md:border-t-0 md:pl-12">
+            <p className="label-mono text-gold-400">Smart Match</p>
+            <p className="headline-md mt-5">Match when you&rsquo;re ready.</p>
+            <p className="lead mt-5 max-w-md text-muted">A short daily list of people who fit. Most people use both.</p>
+            <ButtonLink href="/smart-match" arrow className="mt-8">
+              Explore Smart Match
+            </ButtonLink>
           </Reveal>
         </div>
       </Section>

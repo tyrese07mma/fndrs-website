@@ -1,4 +1,4 @@
-import { Flag, Heart, MapPin, MessageCircle, Search, Sparkles, TrendingUp, type LucideIcon } from 'lucide-react';
+import { Flag, Heart, MapPin, MessageCircle, Search, Send, TrendingUp, type LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
@@ -12,7 +12,7 @@ import { cn } from '@/lib/cn';
 function Frame({ children, className, caption }: { children: ReactNode; className?: string; caption?: string }) {
   return (
     <figure className={className}>
-      <div className="rounded-[30px] border hairline bg-ink-900 p-5 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.9)] sm:p-6">{children}</div>
+      <div className="rounded-[16px] border hairline bg-ink-900 p-5 shadow-[0_40px_100px_-40px_rgba(0,0,0,0.9)] sm:p-6">{children}</div>
       {caption && <figcaption className="label-mono mt-4 text-center text-faint">{caption}</figcaption>}
     </figure>
   );
@@ -55,7 +55,7 @@ export function ProfileSchematic({ className }: { className?: string }) {
           </p>
         </div>
       </div>
-      <div className="mt-5 grid grid-cols-3 gap-px overflow-hidden rounded-[16px] border hairline bg-white/[0.06] text-center">
+      <div className="mt-5 grid grid-cols-3 gap-px overflow-hidden rounded-[8px] border hairline bg-white/[0.06] text-center">
         {[
           ['Followers', '—'],
           ['Founder score', '—'],
@@ -120,7 +120,7 @@ export function PostSchematic({
   return (
     <div
       className={cn(
-        'rounded-[24px] border bg-ink-900 p-5 sm:p-6',
+        'rounded-[12px] border bg-ink-900 p-5 sm:p-6',
         highlight ? 'border-white/20 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)]' : 'hairline',
         className,
       )}
@@ -155,7 +155,7 @@ export function PostSchematic({
         </span>
         {kind === 'looking_for' && (
           <span className="ml-auto inline-flex items-center gap-1.5 font-medium text-ivory">
-            <Sparkles className="size-4 text-gold-500" aria-hidden /> Message author
+            <Send className="size-4 text-gold-500" aria-hidden /> Message author
           </span>
         )}
       </div>
@@ -168,10 +168,10 @@ export function PostSchematic({
 export function StartupSchematic({ className }: { className?: string }) {
   return (
     <Frame className={className} caption="Illustration · structure of a startup profile">
-      <div className="overflow-hidden rounded-[22px] border hairline bg-ink-850">
+      <div className="overflow-hidden rounded-[12px] border hairline bg-ink-850">
         <div className="h-24 bg-gradient-to-br from-[#4a2f31] via-[#2c2223] to-ink-850" />
         <div className="-mt-9 px-5 pb-5">
-          <span className="inline-flex size-16 items-center justify-center rounded-[18px] border border-white/10 bg-[#3a2425] text-2xl font-semibold">S</span>
+          <span className="inline-flex size-16 items-center justify-center rounded-[10px] border border-white/10 bg-[#3a2425] text-2xl font-semibold">S</span>
           <p className="mt-4 text-[1.25rem] font-semibold tracking-[-0.02em]">Your startup</p>
           <p className="mt-1 text-[0.875rem] text-muted">One line on what you are building and for whom.</p>
           <div className="mt-4 flex flex-wrap gap-1.5">
@@ -220,12 +220,12 @@ export function StartupSchematic({ className }: { className?: string }) {
 /** The Copilot prompt starters that exist in the app, shown as a list (not a chat mock). */
 export function CopilotPrompts({ prompts, className }: { prompts: { icon: LucideIcon; title: string; prompt: string }[]; className?: string }) {
   return (
-    <ul className={cn('grid gap-2', className)}>
+    <ul className={cn('border-t hairline', className)}>
       {prompts.map((p) => {
         const Icon = p.icon;
         return (
-          <li key={p.title} className="flex items-start gap-4 rounded-[20px] border hairline bg-ink-900 p-4 sm:p-5">
-            <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-[12px] bg-ivory text-ink-950">
+          <li key={p.title} className="flex items-start gap-4 border-b hairline py-4 sm:py-5">
+            <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-[8px] bg-ivory text-ink-950">
               <Icon className="size-[18px]" aria-hidden />
             </span>
             <div>

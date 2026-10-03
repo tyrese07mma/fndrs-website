@@ -14,6 +14,7 @@ export function Section({
   id,
   wide,
   bleed,
+  space = 'default',
   'aria-labelledby': labelledBy,
 }: {
   children: ReactNode;
@@ -23,6 +24,8 @@ export function Section({
   wide?: boolean;
   /** Skip the inner container (for full-bleed layouts). */
   bleed?: boolean;
+  /** Big gaps only between different topics; related content sits closer. */
+  space?: 'tight' | 'default' | 'loose';
   'aria-labelledby'?: string;
 }) {
   return (
@@ -30,7 +33,10 @@ export function Section({
       id={id}
       aria-labelledby={labelledBy}
       className={cn(
-        'relative py-24 sm:py-32 lg:py-40',
+        'relative',
+        space === 'tight' && 'py-16 sm:py-20 lg:py-24',
+        space === 'default' && 'py-20 sm:py-28 lg:py-32',
+        space === 'loose' && 'py-24 sm:py-32 lg:py-40',
         tone === 'dark' && 'bg-ink-950 text-ivory',
         tone === 'raised' && 'border-y hairline bg-ink-900 text-ivory',
         tone === 'light' && 'bg-paper text-ink',

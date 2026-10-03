@@ -92,7 +92,7 @@ export function CookiePreferences({ open, onClose }: { open: boolean; onClose: (
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="flex max-h-[88dvh] w-full max-w-[34rem] flex-col overflow-hidden rounded-[28px] border hairline-strong bg-ink-900 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)]"
+            className="flex max-h-[88dvh] w-full max-w-[34rem] flex-col overflow-hidden rounded-[16px] border hairline-strong bg-ink-900 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)]"
           >
             <div className="flex items-start justify-between gap-4 border-b hairline px-6 pb-5 pt-6">
               <div>
@@ -106,7 +106,7 @@ export function CookiePreferences({ open, onClose }: { open: boolean; onClose: (
                 data-autofocus
                 onClick={onClose}
                 aria-label="Close cookie settings"
-                className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border hairline-strong text-muted transition-colors hover:text-ivory"
+                className="inline-flex size-10 shrink-0 items-center justify-center rounded-[8px] border hairline-strong text-muted transition-colors hover:text-ivory"
               >
                 <X className="size-4" aria-hidden />
               </button>
@@ -138,7 +138,7 @@ export function CookiePreferences({ open, onClose }: { open: boolean; onClose: (
                           onChange={(v) => setChoices((c) => ({ ...c, [cat.id]: v }))}
                         />
                       </div>
-                      <div className="mt-3 rounded-[14px] bg-ink-800/70 px-4 py-3 text-[0.8125rem] leading-relaxed">
+                      <div className="mt-3 rounded-[10px] bg-ink-800/70 px-4 py-3 text-[0.8125rem] leading-relaxed">
                         {services.length ? (
                           <ul className="space-y-2">
                             {services.map((s) => (

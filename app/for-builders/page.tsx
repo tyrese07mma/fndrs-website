@@ -46,11 +46,11 @@ export default function ForBuildersPage() {
       feature={
         <Section tone="raised">
           <SectionHeading eyebrow="Who counts as a builder" title="If you make things, you belong here." className="mb-14" />
-          <RevealGroup as="ul" className="grid gap-px overflow-hidden rounded-[26px] border hairline bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-5">
+          <RevealGroup as="ul" className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
             {ROLES.map(({ icon: Icon, t, d }) => (
-              <RevealItem as="li" key={t} className="bg-ink-950 p-7">
-                <Icon className="size-6 text-gold-500" strokeWidth={1.75} aria-hidden />
-                <p className="mt-10 text-[1.25rem] font-semibold tracking-[-0.02em]">{t}</p>
+              <RevealItem as="li" key={t} className="border-t hairline-strong pt-6">
+                <Icon className="size-5 text-gold-500" strokeWidth={1.75} aria-hidden />
+                <p className="mt-6 text-[1.25rem] font-semibold tracking-[-0.02em]">{t}</p>
                 <p className="mt-1.5 text-[0.9375rem] text-subtle">{d}</p>
               </RevealItem>
             ))}

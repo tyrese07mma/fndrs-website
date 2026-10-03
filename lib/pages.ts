@@ -4,6 +4,7 @@ import {
   Building2,
   Compass,
   Crown,
+  DoorOpen,
   GraduationCap,
   HelpCircle,
   Info,
@@ -109,8 +110,8 @@ export const pages = P({
   copilot: {
     href: '/copilot',
     label: 'FNDRS Copilot',
-    blurb: 'A second brain for building. In development.',
-    title: 'FNDRS Copilot — a second brain for building',
+    blurb: 'Help that starts from your profile. In development.',
+    title: 'FNDRS Copilot — built to know what you are building',
     description:
       'FNDRS Copilot is an assistant in development that will help you structure ideas, plan next steps and think through startup decisions — with context from your network.',
     icon: Bot,
@@ -195,7 +196,7 @@ export const pages = P({
     title: 'Early Access — be early to FNDRS',
     description:
       'FNDRS is in early beta. Request Early Access and help shape the network for founders, builders, mentors and investors.',
-    icon: Sparkles,
+    icon: DoorOpen,
   },
   faq: {
     href: '/faq',

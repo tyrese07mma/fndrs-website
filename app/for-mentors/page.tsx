@@ -1,4 +1,4 @@
-import { CalendarDays, Compass, HeartHandshake, MessageCircle, Sparkles, UserRound } from 'lucide-react';
+import { CalendarDays, Compass, HeartHandshake, MessageCircle, Rocket, UserRound } from 'lucide-react';
 
 import { AudiencePage } from '@/components/marketing/AudiencePage';
 import { Section, SectionHeading } from '@/components/marketing/Section';
@@ -22,7 +22,7 @@ export default function ForMentorsPage() {
         { icon: Compass, title: 'Discover founders', text: 'Find founders and teams in the industries and stages you know best.', href: '/discover', linkLabel: 'Discover' },
         { icon: UserRound, title: 'Show your expertise', text: 'Your profile shows your skills, industries and what you are open to — advising, one-on-ones, more.', href: '/profiles', linkLabel: 'Profiles' },
         { icon: HeartHandshake, title: 'Make connections', text: 'Smart Match introduces you to founders whose needs fit your experience.', href: '/smart-match', linkLabel: 'Smart Match' },
-        { icon: Sparkles, title: 'Support teams', text: 'Follow startups and help at the moments that matter.', href: '/startups', linkLabel: 'Startups' },
+        { icon: Rocket, title: 'Support teams', text: 'Follow startups and help at the moments that matter.', href: '/startups', linkLabel: 'Startups' },
         { icon: MessageCircle, title: 'Answer the community', text: 'Questions in the feed are a low-effort way to help many founders at once.', href: '/community', linkLabel: 'Community' },
         { icon: CalendarDays, title: 'Host events', text: 'Run a session, an office hour or a pitch night for the network.', href: '/discover#events', linkLabel: 'Events' },
       ]}

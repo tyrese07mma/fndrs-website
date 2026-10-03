@@ -30,11 +30,11 @@ export function FeatureStatus({
   className?: string;
 }) {
   return (
-    <div className={cn('rounded-[28px] border hairline bg-ink-900 p-7 sm:p-8', className)}>
+    <div className={cn('rounded-[16px] border hairline bg-ink-900 p-7 sm:p-8', className)}>
       <div className="flex flex-wrap-reverse items-start justify-between gap-4">
         <StatusBadge status={status} label={statusLabel} />
         {Icon && (
-          <span aria-hidden className="inline-flex size-11 shrink-0 items-center justify-center rounded-[14px] bg-ink-700/80 text-ivory/90">
+          <span aria-hidden className="inline-flex size-11 shrink-0 items-center justify-center rounded-[10px] bg-ink-700/80 text-ivory/90">
             <Icon className="size-5" strokeWidth={1.75} />
           </span>
         )}

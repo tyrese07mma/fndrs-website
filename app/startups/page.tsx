@@ -64,11 +64,10 @@ export default function StartupsPage() {
             size="sm"
             className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start"
           />
-          <RevealGroup as="ul" className="grid gap-px overflow-hidden rounded-[26px] border hairline bg-white/[0.06] sm:grid-cols-2 lg:col-span-8">
-            {PARTS.map(([t, d], i) => (
-              <RevealItem as="li" key={t} className="bg-ink-900 p-7">
-                <span className="font-mono text-[0.75rem] text-faint">{String(i + 1).padStart(2, '0')}</span>
-                <p className="mt-6 text-[1.125rem] font-semibold">{t}</p>
+          <RevealGroup as="ul" className="grid gap-x-12 sm:grid-cols-2 lg:col-span-8">
+            {PARTS.map(([t, d]) => (
+              <RevealItem as="li" key={t} className="border-t hairline py-6">
+                <p className="text-[1.125rem] font-semibold">{t}</p>
                 <p className="mt-2 text-[0.9375rem] leading-relaxed text-subtle">{d}</p>
               </RevealItem>
             ))}
@@ -79,7 +78,7 @@ export default function StartupsPage() {
       {/* ------------- Stages */}
       <Section>
         <SectionHeading eyebrow="Stages" title="Every stage belongs here." lead="FNDRS is not only for funded startups. An idea with a clear problem is a perfectly good reason to make a page and find the first people." className="mb-16" />
-        <RevealGroup as="ol" className="relative grid grid-cols-2 gap-px overflow-hidden rounded-[26px] border hairline bg-white/[0.06] md:grid-cols-3 xl:grid-cols-6">
+        <RevealGroup as="ol" className="relative grid grid-cols-2 gap-px overflow-hidden rounded-[14px] border hairline bg-white/[0.06] md:grid-cols-3 xl:grid-cols-6">
           {STAGES.map(([t, d], i) => (
             <RevealItem as="li" key={t} className="bg-ink-950 p-6 sm:p-7">
               <div className="flex gap-1" aria-hidden>

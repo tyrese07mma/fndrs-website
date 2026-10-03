@@ -67,10 +67,10 @@ export default function FAQPage() {
         title={['Straight', 'answers.']}
         lead="What FNDRS is, how matching works, what is free, what is still in development — and how your profile is handled."
         aside={
-          <ul className="flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 border-t hairline pt-5">
             {GROUPS.map((g) => (
               <li key={g.id}>
-                <a href={`#${g.id}`} className="inline-flex h-9 items-center rounded-full border hairline-strong px-4 text-[0.875rem] text-ivory/85 transition-colors hover:bg-white/[0.05]">
+                <a href={`#${g.id}`} className="text-[0.9375rem] font-medium text-ivory/85 underline-offset-[6px] decoration-white/25 transition-colors hover:text-ivory hover:underline">
                   {g.title}
                 </a>
               </li>
@@ -82,8 +82,7 @@ export default function FAQPage() {
         <Section key={g.id} id={g.id} tone={i % 2 === 0 ? 'raised' : 'dark'} className="!py-20 sm:!py-24">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
             <Reveal>
-              <p className="font-mono text-[0.8125rem] text-gold-500">0{i + 1}</p>
-              <h2 className="headline-sm mt-4">{g.title}</h2>
+              <h2 className="headline-sm">{g.title}</h2>
             </Reveal>
             <FAQList items={g.items} />
           </div>

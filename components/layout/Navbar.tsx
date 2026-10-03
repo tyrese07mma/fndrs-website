@@ -121,10 +121,8 @@ export function Navbar() {
                 {group.href ? (
                   <Link
                     href={group.href}
-                    className={cn(
-                      'inline-flex h-10 items-center rounded-full px-4 text-[0.875rem] font-medium transition-colors',
-                      isActive(pathname, group) ? 'text-ivory' : 'text-muted hover:text-ivory',
-                    )}
+                    data-active={isActive(pathname, group)}
+                    className={cn('nav-link', isActive(pathname, group) ? 'text-ivory' : 'text-muted hover:text-ivory')}
                   >
                     {group.label}
                   </Link>
@@ -147,7 +145,7 @@ export function Navbar() {
             </ButtonLink>
             <button
               type="button"
-              className="relative z-[70] inline-flex h-10 items-center gap-2.5 rounded-full border hairline-strong px-4 text-[0.8125rem] font-medium text-ivory lg:hidden"
+              className="relative z-[70] inline-flex h-10 items-center gap-2.5 rounded-[8px] border hairline-strong px-4 text-[0.8125rem] font-medium text-ivory lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               onClick={() => setMobileOpen((v) => !v)}
@@ -190,11 +188,8 @@ function Dropdown({
         aria-expanded={open}
         aria-controls={id}
         onClick={onToggle}
-        className={cn(
-          'inline-flex h-10 items-center gap-1.5 rounded-full px-4 text-[0.875rem] font-medium transition-colors',
-          open || active ? 'text-ivory' : 'text-muted hover:text-ivory',
-          open && 'bg-white/[0.05]',
-        )}
+        data-active={active}
+        className={cn('nav-link gap-1.5', open || active ? 'text-ivory' : 'text-muted hover:text-ivory')}
       >
         {group.label}
         <ChevronDown aria-hidden className={cn('size-3.5 opacity-60 transition-transform duration-300', open && 'rotate-180')} />
@@ -209,7 +204,7 @@ function Dropdown({
             transition={{ duration: 0.35, ease: EASE }}
             className={cn('absolute left-1/2 top-full origin-top -translate-x-1/2 pt-3', twoCol ? 'w-[36rem]' : 'w-[22rem]')}
           >
-            <div className="overflow-hidden rounded-[22px] border hairline-strong bg-ink-900 p-2 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+            <div className="overflow-hidden rounded-[12px] border hairline-strong bg-ink-900 p-2 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
               <ul className={cn('grid gap-0.5', twoCol && 'grid-cols-2')}>
                 {items.map((key) => {
                   const p = pages[key];
@@ -221,11 +216,11 @@ function Dropdown({
                         href={p.href}
                         aria-current={current ? 'page' : undefined}
                         className={cn(
-                          'group flex gap-3 rounded-[16px] p-3 transition-colors hover:bg-white/[0.05]',
+                          'group flex gap-3 rounded-[8px] p-3 transition-colors hover:bg-white/[0.05]',
                           current && 'bg-white/[0.05]',
                         )}
                       >
-                        <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-[11px] bg-ink-700/70 text-ivory/90 transition-colors group-hover:text-gold-400">
+                        <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-[8px] bg-ink-700/70 text-ivory/90 transition-colors group-hover:text-gold-400">
                           <Icon className="size-[18px]" strokeWidth={1.75} aria-hidden />
                         </span>
                         <span className="min-w-0">
@@ -240,7 +235,7 @@ function Dropdown({
               {group.footer && (
                 <Link
                   href={group.footer.href}
-                  className="mt-1.5 flex items-center justify-between rounded-[16px] border-t hairline px-4 py-3 text-[0.8125rem] font-medium text-muted transition-colors hover:text-ivory"
+                  className="mt-1.5 flex items-center justify-between rounded-[8px] border-t hairline px-4 py-3 text-[0.8125rem] font-medium text-muted transition-colors hover:text-ivory"
                 >
                   {group.footer.label}
                   <ArrowRight className="size-4" aria-hidden />

@@ -15,7 +15,7 @@ export function ConsentGate({ category, children, fallback }: { category: Option
   if (hasConsent(category)) return <>{children}</>;
   return (
     fallback ?? (
-      <div className="rounded-[20px] border hairline bg-ink-900 p-6 text-[0.9375rem] text-muted">
+      <div className="rounded-[12px] border hairline bg-ink-900 p-6 text-[0.9375rem] text-muted">
         This content is loaded from another platform and needs your consent.{' '}
         <button type="button" onClick={(e) => openSettings(e.currentTarget)} className="font-semibold text-ivory underline underline-offset-4">
           Cookie settings

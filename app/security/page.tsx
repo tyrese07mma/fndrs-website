@@ -79,10 +79,9 @@ export default function SecurityPage() {
           <div className="lg:col-span-4">
             <SectionHeading eyebrow="How it works today" title="Plain answers." size="sm" className="lg:sticky lg:top-32" />
           </div>
-          <ol className="border-t hairline lg:col-span-8">
-            {TOPICS.map((t, i) => (
-              <li key={t.title} className="grid gap-3 border-b hairline py-8 sm:grid-cols-[3rem_1fr] sm:gap-6">
-                <span className="font-mono text-[0.75rem] text-faint sm:pt-1.5">{String(i + 1).padStart(2, '0')}</span>
+          <ul className="border-t hairline lg:col-span-8">
+            {TOPICS.map((t) => (
+              <li key={t.title} className="border-b hairline py-8">
                 <Reveal>
                   <h2 className="text-[1.375rem] font-semibold tracking-[-0.02em]">{t.title}</h2>
                   <div className="mt-3 space-y-3 text-[1rem] leading-relaxed text-muted">
@@ -93,7 +92,7 @@ export default function SecurityPage() {
                 </Reveal>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </Section>
 

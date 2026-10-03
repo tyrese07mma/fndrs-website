@@ -1,8 +1,9 @@
-import { Briefcase, CalendarDays, FileText, GitBranch, Lightbulb, ListChecks, MessagesSquare, PenLine, Scale, ScrollText, TrendingUp, UserRound, Users } from 'lucide-react';
+import { Briefcase, CalendarDays, FileText, GitBranch, Lightbulb, PenLine, TrendingUp, UserRound, Users } from 'lucide-react';
 
+import { cn } from '@/lib/cn';
 import { CTASection } from '@/components/marketing/CTASection';
 import { FAQ } from '@/components/marketing/FAQ';
-import { PageHero } from '@/components/marketing/PageHero';
+import { HeroShell } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
 import { ProductScreenshot } from '@/components/product/ProductScreenshot';
@@ -15,14 +16,14 @@ import { pageMetadata } from '@/lib/metadata';
 export const metadata = pageMetadata('copilot');
 
 const CAPABILITIES = [
-  { icon: Lightbulb, t: 'Structure ideas', d: 'Turn a messy idea into problem, audience, first test.' },
-  { icon: ListChecks, t: 'Plan next steps', d: 'Break the next month into concrete, doable steps.' },
-  { icon: MessagesSquare, t: 'Startup questions', d: 'Fundraising, hiring, pricing — the questions every early team has.' },
-  { icon: PenLine, t: 'Texts', d: 'First drafts of emails, posts and one-pagers.' },
-  { icon: UserRound, t: 'Profiles', d: 'Sharpen your FNDRS profile and what you are looking for.' },
-  { icon: Users, t: 'Sparring', d: 'A patient partner to argue an idea with at 1 a.m.' },
-  { icon: Scale, t: 'Structure decisions', d: 'Lay out options, trade-offs and what you would need to know.' },
-  { icon: ScrollText, t: 'Summarise information', d: 'Condense long threads, notes and documents.' },
+  ['Structure ideas', 'Turn a messy idea into problem, audience, first test.'],
+  ['Plan next steps', 'Break the next month into concrete, doable steps.'],
+  ['Startup questions', 'Fundraising, hiring, pricing — the questions every early team has.'],
+  ['Texts', 'First drafts of emails, posts and one-pagers.'],
+  ['Profiles', 'Sharpen your FNDRS profile and what you are looking for.'],
+  ['Sparring', 'A patient partner to argue an idea with at 1 a.m.'],
+  ['Structure decisions', 'Lay out options, trade-offs and what you would need to know.'],
+  ['Summarise information', 'Condense long threads, notes and documents.'],
 ];
 
 const PROMPTS = [
@@ -37,62 +38,90 @@ const PROMPTS = [
 export default function CopilotPage() {
   return (
     <>
-      <PageHero
-        href="/copilot"
-        eyebrow="FNDRS Copilot"
-        title={['A second brain', 'for building.']}
-        lead="FNDRS Copilot is the workspace we are building into FNDRS: a place to think, plan and write with the context of your profile and your network. It is in development and cannot be used yet."
-        aside={<StatusBadge status="dev" />}
-        actions={
-          <>
-            <ButtonLink href="/early-access" size="lg" arrow>
-              Get Early Access
-            </ButtonLink>
-            <ButtonLink href="/roadmap" size="lg" variant="secondary">
-              See the roadmap
-            </ButtonLink>
-          </>
-        }
-        media={<ProductScreenshot screen="discoverFeed" crop={0.4} priority className="mx-auto max-w-[24rem]" caption="Copilot in the app today: not activated yet" />}
-      />
+      {/* ------------- Hero: status first, no phone. Only the real "not activated" row from the app. */}
+      <HeroShell href="/copilot" className="pb-16 sm:pb-20">
+        <div className="mt-12 grid gap-14 sm:mt-14 lg:grid-cols-12 lg:items-end lg:gap-10">
+          <div className="lg:col-span-7">
+            <Reveal y={10}>
+              <StatusBadge status="dev" label="In development · not available yet" className="text-[0.75rem] tracking-[0.18em]" />
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="mt-10">
+                <span className="block font-display text-[clamp(2.25rem,1.2rem+4.4vw,5.5rem)] uppercase leading-none tracking-[0.12em] text-ivory/90">Copilot</span>
+                <span className="mt-6 block max-w-[20ch] text-[clamp(1.75rem,1.2rem+2vw,3rem)] font-bold leading-[1.05] tracking-[-0.035em]">
+                  Built to know what you&rsquo;re building.
+                </span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="lead mt-7 max-w-[36rem] text-muted">
+                FNDRS Copilot is the workspace we are building into FNDRS: a place to think, plan and write with the context of your profile and your network. It is in development and cannot
+                be used yet.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="mt-9 flex flex-col gap-3 xs:flex-row xs:flex-wrap">
+                <ButtonLink href="/early-access" size="lg" arrow>
+                  Get Early Access
+                </ButtonLink>
+                <ButtonLink href="/roadmap" size="lg" variant="secondary">
+                  See the roadmap
+                </ButtonLink>
+              </div>
+            </Reveal>
+          </div>
+          <Reveal delay={0.25} className="lg:col-span-5">
+            <p className="label-mono mb-4 text-subtle">In the app today</p>
+            <ProductScreenshot screen="discoverFeed" region={{ y: 0.225, h: 0.125 }} frame="flat" priority sizes="(min-width: 1024px) 440px, 92vw" />
+            <p className="mt-4 text-[0.875rem] leading-relaxed text-subtle">Copilot already has its place in the Discover tab — marked as not activated, because it isn&rsquo;t.</p>
+          </Reveal>
+        </div>
+      </HeroShell>
 
-      {/* ------------- Honest status */}
-      <Section tone="raised">
-        <div className="grid gap-6 md:grid-cols-2">
-          <Reveal className="rounded-[26px] border hairline bg-ink-950 p-8 sm:p-10">
-            <StatusBadge status="live" label="Today" />
-            <h2 className="mt-6 text-[1.75rem] font-bold tracking-[-0.03em]">Copilot has a home in the app.</h2>
-            <p className="mt-3 text-[1rem] leading-relaxed text-muted">
-              You can already see Copilot in the Discover tab. It shows that it is not activated yet — because it isn&rsquo;t. We would rather ship it right than ship it early.
-            </p>
-          </Reveal>
-          <Reveal delay={0.08} className="rounded-[26px] border border-[#7c97c7]/25 bg-[#7c97c7]/[0.05] p-8 sm:p-10">
-            <StatusBadge status="dev" label="Coming to FNDRS" />
-            <h2 className="mt-6 text-[1.75rem] font-bold tracking-[-0.03em]">An assistant that knows your context.</h2>
-            <p className="mt-3 text-[1rem] leading-relaxed text-muted">
-              What we are building toward: answers that start from your profile, your startup and your network on FNDRS — not from a blank page.
-            </p>
-          </Reveal>
+      {/* ------------- Today → coming: one line, two stops */}
+      <Section tone="raised" space="tight">
+        <div className="grid md:grid-cols-2">
+          {[
+            {
+              status: 'live' as const,
+              label: 'Today',
+              title: 'Copilot has a home in the app.',
+              text: 'You can already see Copilot in the Discover tab. It shows that it is not activated yet — because it isn’t. We would rather ship it right than ship it early.',
+            },
+            {
+              status: 'dev' as const,
+              label: 'Coming to FNDRS',
+              title: 'An assistant that knows your context.',
+              text: 'What we are building toward: answers that start from your profile, your startup and your network on FNDRS — not from a blank page.',
+            },
+          ].map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.08} className="relative border-t hairline-strong pb-2 pt-8 md:pr-12 md:last:pl-12 md:last:pr-0">
+              <span
+                aria-hidden
+                className={cn('absolute left-0 top-0 size-2.5 -translate-y-1/2 rounded-full', i === 0 ? 'bg-[#5aa981]' : 'border border-[#7c97c7] bg-ink-900')}
+              />
+              <StatusBadge status={s.status} label={s.label} />
+              <h2 className="mt-5 text-[1.625rem] font-bold leading-tight tracking-[-0.03em]">{s.title}</h2>
+              <p className="mt-3 max-w-lg text-[1rem] leading-relaxed text-muted">{s.text}</p>
+            </Reveal>
+          ))}
         </div>
       </Section>
 
-      {/* ------------- Capabilities */}
-      <Section>
-        <SectionHeading
-          eyebrow="What it should help with"
-          title="Thinking work, not magic."
-          lead="This is the scope we are designing Copilot for. Everything on this list is planned — none of it is live yet."
-          className="mb-16"
-        />
-        <RevealGroup as="ul" className="grid gap-px overflow-hidden rounded-[26px] border hairline bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4">
-          {CAPABILITIES.map(({ icon: Icon, t, d }) => (
-            <RevealItem as="li" key={t} className="flex flex-col bg-ink-950 p-7">
-              <div className="flex items-center justify-between">
-                <Icon className="size-5 text-ivory/85" strokeWidth={1.75} aria-hidden />
-                <span className="font-mono text-[0.625rem] uppercase tracking-[0.14em] text-faint">Planned</span>
-              </div>
-              <p className="mt-10 text-[1.125rem] font-semibold">{t}</p>
-              <p className="mt-2 text-[0.9375rem] leading-relaxed text-subtle">{d}</p>
+      {/* ------------- Scope as a table: what, how, status */}
+      <Section space="tight">
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <SectionHeading eyebrow="What it should help with" title="Thinking work, not magic." size="sm" />
+          <Reveal>
+            <p className="max-w-md text-[0.9375rem] leading-relaxed text-subtle">This is the scope we are designing Copilot for. Everything on this list is planned — none of it is live yet.</p>
+          </Reveal>
+        </div>
+        <RevealGroup as="ul" className="mt-12 border-t hairline-strong">
+          {CAPABILITIES.map(([t, d]) => (
+            <RevealItem as="li" key={t} className="grid gap-1 border-b hairline py-5 sm:grid-cols-12 sm:items-baseline sm:gap-6">
+              <p className="text-[1.0625rem] font-semibold sm:col-span-4">{t}</p>
+              <p className="text-[0.9375rem] leading-relaxed text-subtle sm:col-span-6">{d}</p>
+              <p className="hidden text-right font-mono text-[0.625rem] uppercase tracking-[0.14em] text-faint sm:col-span-2 sm:block">Planned</p>
             </RevealItem>
           ))}
         </RevealGroup>
@@ -100,14 +129,17 @@ export default function CopilotPage() {
 
       {/* ------------- Prompt starters */}
       <Section tone="raised">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-          <SectionHeading
-            eyebrow="Designed prompt starters"
-            title="Six ways to start a conversation."
-            lead="These starters are already designed into the Copilot screen. They show the kind of help we have in mind: concrete, tied to your situation, useful the same day."
-            action={<StatusBadge status="dev" />}
-          />
-          <Reveal>
+        <div className="grid gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <SectionHeading
+              eyebrow="Designed prompt starters"
+              title="Six ways to start a conversation."
+              lead="These starters are already designed into the Copilot screen. They show the kind of help we have in mind: concrete, tied to your situation, useful the same day."
+              size="sm"
+              action={<StatusBadge status="dev" />}
+            />
+          </div>
+          <Reveal className="lg:col-span-6 lg:col-start-7">
             <CopilotPrompts prompts={PROMPTS} />
           </Reveal>
         </div>
@@ -151,7 +183,7 @@ export default function CopilotPage() {
         ]}
       />
       <CTASection
-        eyebrow="Copilot"
+        variant="compact"
         title="Be there when it switches on."
         body="Join Early Access to follow Copilot as it takes shape — and tell us what you would want it to do."
         primary={{ href: '/early-access', label: 'Join Early Access' }}

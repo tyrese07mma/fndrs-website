@@ -1,6 +1,7 @@
 import { ArrowUpRight, Mail } from 'lucide-react';
 
 import { site, socialLinks } from '@/lib/site';
+import { buttonClass } from '@/components/ui/Button';
 import { StatusBadge } from '@/components/ui/primitives';
 
 /**
@@ -9,7 +10,7 @@ import { StatusBadge } from '@/components/ui/primitives';
  */
 export function FormsUnavailable({ title, body }: { title: string; body: string }) {
   return (
-    <div className="flex min-h-[22rem] flex-col justify-center rounded-[30px] border hairline bg-ink-900 p-7 sm:p-10" role="status">
+    <div className="flex min-h-[22rem] flex-col justify-center rounded-[16px] border hairline bg-ink-900 p-7 sm:p-10" role="status">
       <StatusBadge status="soon" label="Opening soon" />
       <h2 className="headline-sm mt-7">{title}</h2>
       <p className="lead mt-4 max-w-md text-muted">{body}</p>
@@ -19,7 +20,7 @@ export function FormsUnavailable({ title, body }: { title: string; body: string 
             <li>
               <a
                 href={`mailto:${site.contactEmail}`}
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-ivory px-5 text-[0.9375rem] font-semibold text-ink-950 transition-colors hover:bg-white"
+                className={buttonClass('primary')}
               >
                 <Mail className="size-4" aria-hidden /> {site.contactEmail}
               </a>
@@ -31,7 +32,7 @@ export function FormsUnavailable({ title, body }: { title: string; body: string 
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-11 items-center gap-1.5 rounded-full border hairline-strong px-5 text-[0.9375rem] font-semibold text-ivory transition-colors hover:bg-white/[0.06]"
+                className={buttonClass('secondary')}
               >
                 Follow FNDRS on {s.label}
                 <ArrowUpRight className="size-4" aria-hidden />

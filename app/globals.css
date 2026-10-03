@@ -139,6 +139,33 @@
   font-weight: 500;
 }
 
+/* Main navigation: plain type with a fine gold rule for the current section — no pill. */
+@utility nav-link {
+  position: relative;
+  display: inline-flex;
+  height: 2.5rem;
+  align-items: center;
+  padding-inline: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0.875rem;
+    right: 0.875rem;
+    bottom: 0.375rem;
+    height: 1px;
+    background: var(--color-gold-500);
+    scale: 0 1;
+    transform-origin: left;
+    transition: scale 0.4s var(--ease-out-expo);
+  }
+  &[data-active='true']::after {
+    scale: 1 1;
+  }
+}
+
 /* The warm glow behind the app's welcome screen. */
 @utility warm-glow {
   background:

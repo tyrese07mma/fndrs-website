@@ -54,9 +54,8 @@ export default function ProfilesPage() {
             className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start"
           />
           <RevealGroup as="ul" className="border-t hairline lg:col-span-8">
-            {FIELDS.map(([name, sub, text], i) => (
-              <RevealItem as="li" key={name} className="grid gap-2 border-b hairline py-6 sm:grid-cols-[3rem_1fr_1.4fr] sm:gap-6">
-                <span className="font-mono text-[0.75rem] text-faint sm:pt-1.5">{String(i + 1).padStart(2, '0')}</span>
+            {FIELDS.map(([name, sub, text]) => (
+              <RevealItem as="li" key={name} className="grid gap-2 border-b hairline py-6 sm:grid-cols-[1fr_1.4fr] sm:gap-6">
                 <span>
                   <span className="block text-[1.25rem] font-semibold tracking-[-0.02em]">{name}</span>
                   <span className="mt-0.5 block text-[0.875rem] text-gold-400/80">{sub}</span>
@@ -82,7 +81,7 @@ export default function ProfilesPage() {
             }
           />
           <Reveal>
-            <div className="rounded-[30px] border hairline bg-ink-900 p-7 sm:p-9">
+            <div className="rounded-[16px] border hairline bg-ink-900 p-7 sm:p-9">
               <p className="label-mono text-subtle">Looking for</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {['Technical co-founder', 'Business co-founder', 'Engineers', 'Designers', 'Growth / marketing', 'Investors', 'Mentors', 'Advisors', 'Early customers'].map((t, i) => (
@@ -106,10 +105,10 @@ export default function ProfilesPage() {
             title="The app tells you what's missing."
             lead="A complete profile gets better matches. FNDRS shows a short checklist until yours is done:"
           />
-          <RevealGroup as="ol" className="space-y-px overflow-hidden rounded-[24px] border border-ink/10 bg-ink/10">
-            {['Add a profile photo', 'Write a headline', 'Tell your story in the bio', 'Add your city', 'Add at least three skills', 'Say who you are looking for', 'Link your website or LinkedIn'].map((t, i) => (
-              <RevealItem as="li" key={t} className="flex items-center gap-4 bg-paper-50 px-6 py-4">
-                <span className="font-mono text-[0.75rem] text-gold-700">{String(i + 1).padStart(2, '0')}</span>
+          <RevealGroup as="ul" className="border-t border-ink/15">
+            {['Add a profile photo', 'Write a headline', 'Tell your story in the bio', 'Add your city', 'Add at least three skills', 'Say who you are looking for', 'Link your website or LinkedIn'].map((t) => (
+              <RevealItem as="li" key={t} className="flex items-center gap-4 border-b border-ink/15 py-4">
+                <span aria-hidden className="size-4 shrink-0 rounded-[4px] border border-ink/30" />
                 <span className="text-[1rem] font-medium">{t}</span>
               </RevealItem>
             ))}
@@ -129,18 +128,18 @@ export default function ProfilesPage() {
               </p>
             </Reveal>
           </div>
-          <div className="grid gap-3 lg:col-span-7">
+          <div className="border-t hairline-strong lg:col-span-7">
             {[
               ['XP', 'You earn XP for doing things on FNDRS: finishing your profile, launching a startup page, hosting an event, getting a match, sharing a post, completing the weekly challenge.'],
               ['Level', 'Your level goes up as your XP grows. It shows how active you have been on the platform — nothing more.'],
               ['Founder Score', 'Grows slowly with meaningful activity on FNDRS. It is a measure of engagement on the platform.'],
             ].map(([t, d]) => (
-              <Reveal key={t} className="rounded-[24px] border hairline bg-ink-900 p-7">
+              <Reveal key={t} className="grid gap-2 border-b hairline py-6 sm:grid-cols-[10rem_1fr] sm:gap-6">
                 <p className="text-[1.25rem] font-semibold">{t}</p>
-                <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{d}</p>
+                <p className="text-[0.9375rem] leading-relaxed text-muted">{d}</p>
               </Reveal>
             ))}
-            <Reveal className="rounded-[24px] border border-gold-500/30 bg-gold-500/[0.06] p-7">
+            <Reveal className="mt-8 border-l-2 border-gold-500/60 pl-6">
               <p className="text-[1rem] font-semibold text-gold-300">What none of these measure</p>
               <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">
                 None of these numbers say how good someone is as a founder, a builder or a person. FNDRS cannot measure that — and does not try to.

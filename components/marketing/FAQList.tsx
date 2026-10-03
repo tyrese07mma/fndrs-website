@@ -33,12 +33,12 @@ export function FAQList({ items, tone = 'dark' }: { items: FAQItem[]; tone?: Ton
                 <span
                   aria-hidden
                   className={cn(
-                    'mt-0.5 inline-flex size-7 shrink-0 items-center justify-center rounded-full border transition-transform duration-300',
-                    light ? 'border-ink/15' : 'hairline-strong',
+                    'mt-0.5 inline-flex size-7 shrink-0 items-center justify-center transition-transform duration-300',
+                    light ? 'text-ink-muted' : 'text-subtle',
                     isOpen && 'rotate-45',
                   )}
                 >
-                  <Plus className="size-3.5" />
+                  <Plus className="size-4" />
                 </span>
               </button>
             </h3>
