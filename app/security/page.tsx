@@ -1,14 +1,68 @@
-import { EyeOff, KeyRound, MapPinOff, MessageSquareLock, ShieldCheck, Trash2 } from 'lucide-react';
-
 import { PageHero } from '@/components/marketing/PageHero';
 import { ProductNavigation } from '@/components/marketing/ProductNavigation';
 import { Section, SectionHeading } from '@/components/marketing/Section';
-import { UseCaseGrid } from '@/components/marketing/UseCaseGrid';
 import { ProductScreenshot } from '@/components/product/ProductScreenshot';
+import { Eyebrow } from '@/components/ui/primitives';
 import { Reveal } from '@/components/ui/Reveal';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata('security');
+
+const TOPICS: { title: string; body: string[] }[] = [
+  {
+    title: 'Your data',
+    body: [
+      'Your profile contains what you choose to put on it. Fields you leave empty are not shown and not used for matching.',
+      'In the app settings you decide whether your city is shown, whether you appear in Smart Match, and whether everyone or only your matches can message you.',
+    ],
+  },
+  {
+    title: 'Authentication',
+    body: [
+      'Accounts are protected by email and password. Passwords need at least twelve characters and are never stored in plain text: they are hashed by the authentication service before they are saved.',
+      'If you forget your password, you can reset it through a link sent to your email address.',
+    ],
+  },
+  {
+    title: 'Data transport',
+    body: [
+      'This website and the connection between the app and its backend use HTTPS, so data is encrypted on its way between your device and our servers.',
+    ],
+  },
+  {
+    title: 'Infrastructure',
+    body: [
+      'The FNDRS app runs on Supabase (Postgres database and authentication). Access to data is enforced in the database itself with row-level security, so each request only reaches the records it is allowed to see.',
+      'This website is hosted on Vercel.',
+    ],
+  },
+  {
+    title: 'Privacy by design',
+    body: [
+      'We collect what the product needs to work: your account, your profile and what you do on FNDRS. This website runs without analytics, advertising trackers or cookies.',
+    ],
+  },
+  {
+    title: 'Account control',
+    body: [
+      'You can edit your profile at any time. Deleting your account in the app settings permanently removes your profile, posts, messages and matches.',
+      'For a copy of your data or any other request, contact us and we will handle it.',
+    ],
+  },
+  {
+    title: 'Reporting & safety',
+    body: [
+      'You can report a post, a profile or a conversation from its menu in the app. Reports go to the FNDRS team for review.',
+      'Limiting messages to your matches is the simplest way to avoid unwanted contact.',
+    ],
+  },
+  {
+    title: 'Responsible development',
+    body: [
+      'FNDRS is in early beta, and our security practices grow with the product. If you find a security issue, please tell us through the contact page before disclosing it publicly.',
+    ],
+  },
+];
 
 export default function SecurityPage() {
   return (
@@ -17,30 +71,45 @@ export default function SecurityPage() {
         href="/security"
         eyebrow="Security & Privacy"
         title={['Your profile.', <span key="x" className="text-subtle">Your rules.</span>]}
-        lead="A network only works if people trust it. These are the controls you have over your own profile on FNDRS, and how we approach your data."
+        lead="A network only works if people trust it. This page explains, without marketing language, how FNDRS handles your account and data today."
       />
+
       <Section tone="raised" className="!pt-20">
-        <SectionHeading eyebrow="Controls in the app" title="You decide who sees what." className="mb-14" />
-        <UseCaseGrid
-          items={[
-            { icon: EyeOff, title: 'Discoverability', text: 'Turn it off and you will not appear in Discover or Smart Match.' },
-            { icon: MessageSquareLock, title: 'Message permissions', text: 'Let everyone message you, or only the people you matched with.' },
-            { icon: MapPinOff, title: 'Location visibility', text: 'Show your city to help local matches — or hide it.' },
-            { icon: KeyRound, title: 'Strong passwords', text: 'Accounts require a password of at least twelve characters.' },
-            { icon: ShieldCheck, title: 'Access rules', text: 'Data access is enforced on the database level, so people only see what they are allowed to see.' },
-            { icon: Trash2, title: 'Your data, on request', text: 'Ask us for a copy of your data or for deletion at any time.', href: '/contact', linkLabel: 'Contact us' },
-          ]}
-        />
+        <div className="grid gap-16 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <SectionHeading eyebrow="How it works today" title="Plain answers." size="sm" className="lg:sticky lg:top-32" />
+          </div>
+          <ol className="border-t hairline lg:col-span-8">
+            {TOPICS.map((t, i) => (
+              <li key={t.title} className="grid gap-3 border-b hairline py-8 sm:grid-cols-[3rem_1fr] sm:gap-6">
+                <span className="font-mono text-[0.75rem] text-faint sm:pt-1.5">{String(i + 1).padStart(2, '0')}</span>
+                <Reveal>
+                  <h2 className="text-[1.375rem] font-semibold tracking-[-0.02em]">{t.title}</h2>
+                  <div className="mt-3 space-y-3 text-[1rem] leading-relaxed text-muted">
+                    {t.body.map((p) => (
+                      <p key={p}>{p}</p>
+                    ))}
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
       </Section>
+
       <Section>
         <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
-          <SectionHeading
-            eyebrow="This website"
-            title="No trackers. No cookies."
-            lead="This website does not use analytics, ad trackers or cookies, and fonts are served from our own server. Forms are only used to answer your request."
-          />
           <Reveal>
-            <ProductScreenshot screen="signIn" crop={0.7} className="mx-auto max-w-[22rem]" />
+            <Eyebrow>What we don&rsquo;t claim</Eyebrow>
+            <h2 className="headline-md mt-6">No badges we haven&rsquo;t earned.</h2>
+            <div className="lead mt-6 space-y-4 text-muted">
+              <p>FNDRS holds no security certifications such as SOC 2 or ISO 27001.</p>
+              <p>Messages are encrypted in transit, but they are not end-to-end encrypted.</p>
+              <p>When this changes, this page will say so.</p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <ProductScreenshot screen="signIn" crop={0.7} className="mx-auto max-w-[22rem]" caption="Signing in to the FNDRS app" />
           </Reveal>
         </div>
       </Section>

@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 
+import { deliver, type Submission } from '@/lib/forms';
+
 /**
- * Receives Early Access + contact submissions and forwards them as JSON to
- * FORMS_WEBHOOK_URL (Zapier, Make, n8n, a Supabase function, ...).
- * Without a webhook: logged in development, refused in production so no
- * submission is silently lost.
+ * Receives Early Access + contact submissions, validates them and hands them
+ * to the configured destination (see lib/forms.ts). Without one, production
+ * refuses the request so no submission is ever silently lost.
  */
 
 const ROLES = ['Founder', 'Developer', 'Designer', 'Marketer', 'Investor', 'Mentor', 'Other'];
@@ -33,7 +34,7 @@ export async function POST(req: Request) {
   if (!name || !EMAIL.test(email)) return NextResponse.json({ error: 'invalid_fields' }, { status: 422 });
   if (body.consent !== true) return NextResponse.json({ error: 'consent_required' }, { status: 422 });
 
-  const record =
+  const record: Submission =
     kind === 'early-access'
       ? {
           kind,
@@ -54,25 +55,11 @@ export async function POST(req: Request) {
 
   if (kind === 'contact' && !record.message) return NextResponse.json({ error: 'invalid_fields' }, { status: 422 });
 
-  const hook = process.env.FORMS_WEBHOOK_URL;
-  if (!hook) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.info('[forms] no FORMS_WEBHOOK_URL set — submission:', record);
-      return NextResponse.json({ ok: true, dev: true });
-    }
-    return NextResponse.json({ error: 'not_configured' }, { status: 503 });
-  }
-
   try {
-    const res = await fetch(hook, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(record),
-    });
-    if (!res.ok) throw new Error(`webhook ${res.status}`);
+    await deliver(record);
   } catch (e) {
-    console.error('[forms] forward failed', e);
-    return NextResponse.json({ error: 'forward_failed' }, { status: 502 });
+    const code = e instanceof Error && e.message === 'not_configured' ? 'not_configured' : 'forward_failed';
+    return NextResponse.json({ error: code }, { status: code === 'not_configured' ? 503 : 502 });
   }
 
   return NextResponse.json({ ok: true });

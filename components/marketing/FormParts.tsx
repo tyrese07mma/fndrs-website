@@ -88,6 +88,7 @@ export function Honeypot({ value, onChange }: { value: string; onChange: (v: str
 export const ERRORS: Record<string, string> = {
   invalid_fields: 'Please check your name and email address.',
   consent_required: 'Please confirm the privacy note so we can store your request.',
-  not_configured: 'Sign-ups are not open on this site yet. Please try again soon.',
+  not_configured: 'Requests are not open on this site yet. Please try again soon.',
+  forward_failed: 'We could not save your request just now. Please try again in a moment.',
   default: 'Something went wrong on our side. Please try again in a moment.',
 };

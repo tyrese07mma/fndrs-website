@@ -59,7 +59,7 @@ export default function ForFoundersPage() {
         { q: 'Can I list my startup if I am not raising?', a: 'Of course. A startup page is about what you are building and who you need — not only fundraising.' },
         { q: 'Does FNDRS help me raise money?', a: 'FNDRS helps you discover and meet investors with context. It does not broker investments or promise funding.' },
       ]}
-      closing={{ title: <>Find the people you&rsquo;re missing.</>, body: 'Join early access as a founder and set up your profile and startup in minutes.' }}
+      closing={{ title: <>Find the people you&rsquo;re missing.</>, body: 'Join Early Access as a founder and set up your profile and startup in minutes.' }}
       related={['smartMatch', 'startups', 'community', 'forInvestors']}
     />
   );

@@ -98,6 +98,27 @@ export function MatchFlow() {
         </Reveal>
       </div>
 
+      <Reveal delay={0.2}>
+        <div className="mt-6 grid gap-px overflow-hidden rounded-[26px] border border-gold-500/25 bg-gold-500/15 md:grid-cols-2">
+          {[
+            ['Does the founder have what you are looking for?', 'Yes: business skills and a SaaS idea.'],
+            ['Are you what the founder is looking for?', 'Yes: they need a developer.'],
+          ].map(([q, a], i) => (
+            <div key={q} className="bg-ink-950 p-6 sm:p-7">
+              <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-gold-400">Check {i + 1}</p>
+              <p className="mt-3 text-[1.0625rem] font-semibold leading-snug">{q}</p>
+              <p className="mt-2 flex items-center gap-2 text-[0.9375rem] text-muted">
+                <Check aria-hidden className="size-4 shrink-0 text-gold-500" />
+                {a}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-center text-[0.9375rem] text-muted">
+          A match ranks highest when <span className="text-ivory">both answers are yes</span>. One-sided fit ranks lower.
+        </p>
+      </Reveal>
+
       <Reveal delay={0.25}>
         <div className="mt-6 rounded-[26px] border hairline bg-ink-900/60 p-6 sm:p-8">
           <p className="label-mono text-subtle">Why this match is relevant</p>

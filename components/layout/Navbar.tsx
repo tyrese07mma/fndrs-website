@@ -82,7 +82,42 @@ export function Navbar() {
 
           <ul className="hidden items-center gap-1 lg:flex">
             {mainNav.map((group) => (
-              <li key={group.label} className="relative" onMouseEnter={() => group.items && enter(group.label)} onMouseLeave={leave}>
+              <li
+                key={group.label}
+                className="relative"
+                onMouseEnter={() => group.items && enter(group.label)}
+                onMouseLeave={leave}
+                // Keyboard: close when focus leaves the group, Escape returns focus to the trigger,
+                // ArrowDown opens the dropdown and moves into it.
+                onBlur={(e) => {
+                  if (group.items && !e.currentTarget.contains(e.relatedTarget as Node | null)) {
+                    setOpen((o) => (o === group.label ? null : o));
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (!group.items) return;
+                  const li = e.currentTarget;
+                  if (e.key === 'Escape' && open === group.label) {
+                    e.stopPropagation();
+                    setOpen(null);
+                    li.querySelector('button')?.focus();
+                  } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    setOpen(group.label);
+                    const links = [...li.querySelectorAll<HTMLAnchorElement>('a')];
+                    const i = links.indexOf(document.activeElement as HTMLAnchorElement);
+                    if (links.length) links[Math.min(i + 1, links.length - 1)].focus();
+                    else setTimeout(() => li.querySelector<HTMLAnchorElement>('a')?.focus(), 50);
+                  } else if (e.key === 'ArrowUp') {
+                    const links = [...li.querySelectorAll<HTMLAnchorElement>('a')];
+                    const i = links.indexOf(document.activeElement as HTMLAnchorElement);
+                    if (i >= 0) {
+                      e.preventDefault();
+                      (i === 0 ? li.querySelector('button') : links[i - 1])?.focus();
+                    }
+                  }
+                }}
+              >
                 {group.href ? (
                   <Link
                     href={group.href}

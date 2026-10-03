@@ -15,14 +15,14 @@
 
   --color-ivory: #f5f2ea;
   --color-muted: #a2a2ac;
-  --color-subtle: #7c7c87;
-  --color-faint: #5c5c67;
+  --color-subtle: #8e8e98;
+  --color-faint: #80808a;
 
   --color-gold-300: #eeddb6;
   --color-gold-400: #e4cd9b;
   --color-gold-500: #cba968;
   --color-gold-600: #a9884b;
-  --color-gold-700: #8a6d35;
+  --color-gold-700: #765b28;
 
   --color-paper: #f5f2ea;
   --color-paper-50: #fbf9f4;
@@ -30,7 +30,7 @@
   --color-paper-300: #e4dfd3;
   --color-ink: #121216;
   --color-ink-muted: #4a4a55;
-  --color-ink-subtle: #7a7a85;
+  --color-ink-subtle: #66666f;
 
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;

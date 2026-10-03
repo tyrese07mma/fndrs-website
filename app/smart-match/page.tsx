@@ -215,7 +215,7 @@ export default function SmartMatchPage() {
             needs a profile to find.
           </>
         }
-        body="Join early access, build your profile and let Smart Match do the first filter for you."
+        body="Join Early Access, build your profile and let Smart Match do the first filter for you."
         primary={{ href: '/early-access', label: 'Create your profile' }}
         secondary={{ href: '/profiles', label: 'What goes into a profile' }}
       />

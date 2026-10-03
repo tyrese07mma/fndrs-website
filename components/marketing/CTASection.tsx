@@ -8,7 +8,7 @@ import { Reveal } from '@/components/ui/Reveal';
 
 /** Closing call to action. One primary action, one quiet secondary. */
 export function CTASection({
-  eyebrow = 'Early access',
+  eyebrow = 'Early Access',
   title,
   body,
   primary = { href: '/early-access', label: 'Join Early Access' },

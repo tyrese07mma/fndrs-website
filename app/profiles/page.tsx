@@ -156,7 +156,7 @@ export default function ProfilesPage() {
           <SectionHeading
             eyebrow="Your profile, your rules"
             title="Visible when you want to be."
-            lead="You decide whether your profile appears in Discover and Smart Match, whether your location is shown, and whether everyone or only your matches can message you."
+            lead="You decide whether you appear in Smart Match, whether your city is shown, and whether everyone or only your matches can message you."
             action={
               <ButtonLink href="/security" variant="secondary" arrow>
                 Security &amp; Privacy
@@ -174,7 +174,7 @@ export default function ProfilesPage() {
         title="Profiles, answered."
         items={[
           { q: 'Do I need a startup to create a profile?', a: 'No. Many people on FNDRS are looking for something to join. Set your role and what you are open to, and the right founders can find you.' },
-          { q: 'Can I hide my profile?', a: 'Yes. You can turn off discoverability so you do not appear in Discover or Smart Match, and hide your location.' },
+          { q: 'Can I control who sees and contacts me?', a: 'You can pause your appearance in Smart Match, hide your city and limit messages to your matches. To leave completely, you can delete your account in the app settings.' },
           { q: 'Is the Founder Score visible to others?', a: 'Yes, it is shown on profiles. It reflects activity on FNDRS, not quality — see the section above.' },
           { q: 'Can I link my LinkedIn?', a: 'Yes. You can add your website, LinkedIn and X to your profile.' },
         ]}

@@ -9,6 +9,7 @@ import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/primitives';
 import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
 import { pageMetadata } from '@/lib/metadata';
+import { site } from '@/lib/site';
 
 export const metadata = pageMetadata('about');
 
@@ -105,7 +106,7 @@ export default function AboutPage() {
             {[
               ['No fake numbers.', 'You will not find invented user counts, logos or testimonials here. When we have real ones, we will show them.'],
               ['Honest status labels.', 'Features in development are marked as such — Copilot and Pro included.'],
-              ['Built with early members.', 'The first people on FNDRS shape what it becomes. That is what early access is for.'],
+              ['Built with early members.', 'The first people on FNDRS shape what it becomes. That is what Early Access is for.'],
             ].map(([t, d]) => (
               <Reveal key={t} className="rounded-[24px] border hairline bg-ink-950 p-7">
                 <p className="text-[1.125rem] font-semibold">{t}</p>
@@ -119,7 +120,25 @@ export default function AboutPage() {
       {/* ------------- Brand */}
       <Section>
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          <SectionHeading eyebrow="The name" title="FNDRS Society." lead="A society, not a platform: a group of people who build, and who are better at it together. Find. Match. Build." />
+          <SectionHeading
+            eyebrow="The name"
+            title="FNDRS Society."
+            lead="A society, not a platform: a group of people who build, and who are better at it together. Find. Match. Build."
+            action={
+              <p className="text-[0.9375rem] text-subtle">
+                FNDRS Society is designed and developed by{' '}
+                <a
+                  href={site.credit.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="text-ivory/85 underline decoration-white/20 underline-offset-4 transition-colors hover:text-ivory"
+                >
+                  {site.credit.name}
+                </a>
+                .
+              </p>
+            }
+          />
           <Reveal className="flex flex-col items-center justify-center gap-12 rounded-[30px] border hairline bg-black px-8 py-16">
             <Image src="/brand/mark.png" alt="FNDRS mark" width={160} height={132} className="h-28 w-auto" />
             <Wordmark size={28} className="text-ivory" />

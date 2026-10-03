@@ -51,10 +51,10 @@ export default function ForMentorsPage() {
       }
       faq={[
         { q: 'Is mentoring on FNDRS paid?', a: 'FNDRS does not set or process mentoring fees. How you work with founders is up to you.' },
-        { q: 'How much time do I need?', a: 'As much as you choose. You control who can message you and whether your profile appears in Discover and Smart Match.' },
+        { q: 'How much time do I need?', a: 'As much as you choose. You control who can message you and whether you appear in Smart Match.' },
         { q: 'Can I mentor and invest?', a: 'Yes. Set your role and what you are open to, and your profile shows both.' },
       ]}
-      closing={{ title: 'Put your experience where it changes the outcome.', body: 'Join early access as a mentor and set up your profile in minutes.' }}
+      closing={{ title: 'Put your experience where it changes the outcome.', body: 'Join Early Access as a mentor and set up your profile in minutes.' }}
       related={['discover', 'profiles', 'forFounders', 'community']}
     />
   );

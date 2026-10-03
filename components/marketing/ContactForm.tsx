@@ -6,12 +6,12 @@ import { useState, type FormEvent } from 'react';
 import { buttonClass } from '@/components/ui/Button';
 import { ChipRadio, Consent, ERRORS, Field, Honeypot, TextArea, TextInput } from './FormParts';
 
-const TOPICS = ['The app', 'Early access', 'Partnership', 'Press', 'Something else'];
+const TOPICS = ['App feedback', 'Early Access', 'Partnerships', 'Press', 'Something else'];
 
 export function ContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [topic, setTopic] = useState('The app');
+  const [topic, setTopic] = useState('App feedback');
   const [message, setMessage] = useState('');
   const [consent, setConsent] = useState(false);
   const [honey, setHoney] = useState('');
@@ -43,8 +43,10 @@ export function ContactForm() {
         <span className="inline-flex size-12 items-center justify-center rounded-full bg-ivory text-ink-950">
           <Check className="size-5" aria-hidden />
         </span>
-        <h2 className="headline-sm mt-6">Thanks — message received.</h2>
-        <p className="mt-3 text-muted">We read everything and reply from a real inbox, usually within a few days.</p>
+        <h2 className="headline-sm mt-6">Thanks, your message is with us.</h2>
+        <p className="mt-3 text-muted">
+          We&rsquo;ll reply to <span className="text-ivory">{email}</span>.
+        </p>
       </div>
     );
   }

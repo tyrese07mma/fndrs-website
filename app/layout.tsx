@@ -8,6 +8,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { OG_IMAGE } from '@/lib/metadata';
 import { site } from '@/lib/site';
+import { siteJsonLd } from '@/lib/structuredData';
 import './globals.css';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist', display: 'swap' });
@@ -27,15 +28,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: '#080808',
   colorScheme: 'dark',
-};
-
-const orgJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: site.name,
-  url: site.url,
-  logo: `${site.url}/icon.png`,
-  description: site.description,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -63,7 +55,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Script id="motion-failsafe" strategy="beforeInteractive">
           {`setTimeout(function(){if(!window.__fndrsHydrated)document.documentElement.classList.add('motion-failsafe')},3000)`}
         </Script>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd()) }} />
       </body>
     </html>
   );

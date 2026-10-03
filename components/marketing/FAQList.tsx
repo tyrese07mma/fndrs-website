@@ -23,6 +23,7 @@ export function FAQList({ items, tone = 'dark' }: { items: FAQItem[]; tone?: Ton
             <h3>
               <button
                 type="button"
+                id={`${panelId}-q`}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpen(isOpen ? null : i)}
@@ -45,6 +46,8 @@ export function FAQList({ items, tone = 'dark' }: { items: FAQItem[]; tone?: Ton
               {isOpen && (
                 <motion.div
                   id={panelId}
+                  role="region"
+                  aria-labelledby={`${panelId}-q`}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}

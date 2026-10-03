@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { AudienceCards } from '@/components/marketing/AudienceCards';
 import { CTASection } from '@/components/marketing/CTASection';
 import { ProductLoop } from '@/components/marketing/ProductLoop';
+import { ProductReality } from '@/components/marketing/ProductReality';
 import { Section, SectionHeading } from '@/components/marketing/Section';
 import { ParallaxScreen, ScreenStack } from '@/components/product/ScreenStack';
 import { PostSchematic } from '@/components/product/Schematics';
@@ -112,6 +113,9 @@ export default function HomePage() {
           <ScreenStack center="smartMatch" right="discoverFeed" className="max-w-[36rem]" />
         </div>
       </Section>
+
+      {/* ------------------------------------------------ PRODUCT REALITY */}
+      <ProductReality />
 
       {/* ------------------------------------------------ DISCOVER */}
       <Section tone="raised">
@@ -252,7 +256,7 @@ export default function HomePage() {
 
       {/* ------------------------------------------------ EARLY ACCESS */}
       <CTASection
-        eyebrow="Early access"
+        eyebrow="Early Access"
         title={
           <>
             FNDRS is being built.

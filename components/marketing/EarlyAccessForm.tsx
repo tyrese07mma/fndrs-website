@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, Check, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 
 import { buttonClass } from '@/components/ui/Button';
 import { ChipRadio, Consent, ERRORS, Field, Honeypot, TextArea, TextInput } from './FormParts';
@@ -29,6 +29,12 @@ export function EarlyAccessForm() {
   const [honey, setHoney] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [error, setError] = useState('');
+  const doneRef = useRef<HTMLHeadingElement>(null);
+
+  // Move focus to the confirmation so screen readers announce it.
+  useEffect(() => {
+    if (state === 'done') doneRef.current?.focus();
+  }, [state]);
 
   async function submit(e: FormEvent) {
     e.preventDefault();
@@ -65,10 +71,12 @@ export function EarlyAccessForm() {
             <span className="inline-flex size-14 items-center justify-center rounded-full bg-ivory text-ink-950">
               <Check className="size-6" aria-hidden />
             </span>
-            <h2 className="headline-sm mt-8">You&rsquo;re on the list, {name.split(' ')[0]}.</h2>
+            <h2 ref={doneRef} tabIndex={-1} className="headline-sm mt-8 outline-none">
+              You&rsquo;re on the list.
+            </h2>
             <p className="lead mt-4 max-w-md text-muted">
-              Thanks for wanting to build this with us. We&rsquo;ll get in touch at <span className="text-ivory">{email}</span> as FNDRS
-              opens up to more people.
+              Thanks, {name.split(' ')[0]}. We&rsquo;ll contact you at <span className="text-ivory">{email}</span> when your access is ready.
+              Until then, the roadmap shows what we are working on.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link href="/how-it-works" className={buttonClass('secondary', 'md')}>

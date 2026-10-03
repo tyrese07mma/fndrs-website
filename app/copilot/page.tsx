@@ -41,12 +41,12 @@ export default function CopilotPage() {
         href="/copilot"
         eyebrow="FNDRS Copilot"
         title={['A second brain', 'for building.']}
-        lead="Copilot is an assistant we are building into FNDRS — to help you think, plan and write with the context of your profile and your network. It is in development and not active in the app yet."
+        lead="FNDRS Copilot is the workspace we are building into FNDRS: a place to think, plan and write with the context of your profile and your network. It is in development and cannot be used yet."
         aside={<StatusBadge status="dev" />}
         actions={
           <>
             <ButtonLink href="/early-access" size="lg" arrow>
-              Get early access
+              Get Early Access
             </ButtonLink>
             <ButtonLink href="/roadmap" size="lg" variant="secondary">
               See the roadmap
@@ -136,16 +136,24 @@ export default function CopilotPage() {
         eyebrow="FAQ · Copilot"
         title="Copilot, answered."
         items={[
-          { q: 'Can I use Copilot today?', a: 'Not yet. Copilot is visible in the app but not activated. We will announce it when it is ready.' },
-          { q: 'Will Copilot cost extra?', a: 'We have not decided yet. Pricing for FNDRS Pro and any AI features is not final.' },
-          { q: 'Will Copilot read my messages?', a: 'Copilot is still being designed. Whatever it uses, we will explain clearly in the app and in our privacy policy before it goes live.' },
+          { q: 'Can I use Copilot today?', a: 'Not yet. Copilot is visible in the app, marked as not activated. We will announce it here and in the app when it is ready.' },
+          { q: 'Will Copilot cost extra?', a: 'That has not been decided. Pricing for FNDRS Pro and any AI features will be announced before launch.' },
+          {
+            q: 'Will Copilot read my messages?',
+            a: 'The exact permissions model is still being defined. FNDRS Copilot will be designed around explicit user context and transparent controls rather than silently reading private conversations. Before it goes live, we will explain in the app and in our privacy policy exactly what it can access.',
+          },
+          {
+            q: 'What will Copilot know about me?',
+            a: 'The idea is that Copilot starts from what you chose to share on FNDRS, such as your profile and your startup, so you do not have to explain your situation from scratch. What it uses, and how you control that, will be clear before launch.',
+          },
           { q: 'Does Copilot give investment or legal advice?', a: 'No. It is meant to help you think and write. For investment, legal or tax decisions, talk to a qualified professional.' },
+          { q: 'Can I help shape Copilot?', a: 'Yes. Tell us what you would want it to do through the contact page or as an Early Access member.' },
         ]}
       />
       <CTASection
         eyebrow="Copilot"
         title="Be there when it switches on."
-        body="Join early access to follow Copilot as it takes shape — and tell us what you would want it to do."
+        body="Join Early Access to follow Copilot as it takes shape — and tell us what you would want it to do."
         primary={{ href: '/early-access', label: 'Join Early Access' }}
         secondary={{ href: '/roadmap', label: 'Roadmap' }}
       />

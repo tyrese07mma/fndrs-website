@@ -26,7 +26,7 @@ export function Reveal({
       className={className}
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
+      viewport={{ once: true, margin: '0px 0px -6% 0px' }}
       transition={{ duration: 0.9, ease: EASE, delay }}
     >
       {children}
@@ -53,7 +53,7 @@ export function RevealGroup({ children, className, as = 'div' }: { children: Rea
       variants={group}
       initial={reduce ? false : 'hidden'}
       whileInView="show"
-      viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+      viewport={{ once: true, margin: '0px 0px -4% 0px' }}
     >
       {children}
     </Comp>

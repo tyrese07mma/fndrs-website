@@ -1,4 +1,4 @@
-import { BookOpen, Search, Trophy } from 'lucide-react';
+import { BookOpen, Briefcase, CalendarDays, GraduationCap, Search, TrendingUp, Trophy, Users } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import { EditorialSection } from '@/components/marketing/EditorialSection';
@@ -10,26 +10,12 @@ import { ParallaxScreen } from '@/components/product/ScreenStack';
 import { ProductScreenshot } from '@/components/product/ProductScreenshot';
 import { StartupSchematic } from '@/components/product/Schematics';
 import { ButtonLink } from '@/components/ui/Button';
+import { FeatureStatus } from '@/components/ui/FeatureStatus';
 import { StatusBadge } from '@/components/ui/primitives';
-import { Reveal, RevealGroup, RevealItem } from '@/components/ui/Reveal';
+import { Reveal } from '@/components/ui/Reveal';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata('discover');
-
-function WordList({ items, caption }: { items: string[]; caption: string }) {
-  return (
-    <figure className="rounded-[28px] border hairline bg-ink-900 p-6 sm:p-8">
-      <RevealGroup as="ul" className="divide-y divide-white/[0.06]">
-        {items.map((t) => (
-          <RevealItem as="li" key={t} className="py-4 text-[clamp(1.25rem,1rem+1vw,1.75rem)] font-semibold tracking-[-0.025em] text-ivory/85 first:pt-0 last:pb-0">
-            {t}
-          </RevealItem>
-        ))}
-      </RevealGroup>
-      <figcaption className="label-mono mt-6 border-t hairline pt-5 text-faint">{caption}</figcaption>
-    </figure>
-  );
-}
 
 const CHAPTERS: {
   id: string;
@@ -78,11 +64,20 @@ const CHAPTERS: {
     body: (
       <>
         <p>Communities group people around a theme — an industry, a craft, a stage. Join the ones that match your work, see who else is there and post to the people who actually care.</p>
-        <p>Communities have their own members, rules and posts, and they can be public or private.</p>
+        <p>Each space has its own members, rules and posts, and it can be public or private.</p>
       </>
     ),
     links: [{ href: '/community', label: 'Community & Feed' }],
-    media: <WordList items={['AI builders', 'Climate tech', 'Fintech', 'First-time founders', 'Design & product']} caption="Example community topics" />,
+    media: (
+      <FeatureStatus
+        status="beta"
+        statusLabel="In the app · early beta"
+        icon={Users}
+        title="Spaces"
+        description="In the app, communities are called spaces. They fill up as early members join and start them."
+        items={['Browse and join spaces by topic', 'See who else is a member', 'Post to the people in a space', 'Public and private spaces']}
+      />
+    ),
   },
   {
     id: 'events',
@@ -98,6 +93,16 @@ const CHAPTERS: {
       { href: '/how-it-works', label: 'How FNDRS works' },
       { href: '/for-mentors', label: 'Hosting as a mentor' },
     ],
+    media: (
+      <FeatureStatus
+        status="beta"
+        statusLabel="In the app · early beta"
+        icon={CalendarDays}
+        title="Events"
+        description="Events work in the app today. Listings grow as members host founder meetups, pitch nights and demo days."
+        items={['Pitch nights, meetups and online sessions', 'RSVP and see who is going', 'Host your own event']}
+      />
+    ),
   },
   {
     id: 'mentors',
@@ -109,6 +114,16 @@ const CHAPTERS: {
       </>
     ),
     links: [{ href: '/for-mentors', label: 'For Mentors' }],
+    media: (
+      <FeatureStatus
+        status="beta"
+        statusLabel="In the app · early beta"
+        icon={GraduationCap}
+        title="Mentors"
+        description="The mentor section is live in the app. It grows as experienced operators and founders join during the beta."
+        items={['Mentor profiles with their expertise', 'Book a one-on-one session in the app']}
+      />
+    ),
   },
   {
     id: 'investors',
@@ -124,6 +139,21 @@ const CHAPTERS: {
       { href: '/for-investors', label: 'For Investors' },
       { href: '/startups', label: 'Startup Profiles' },
     ],
+    media: (
+      <FeatureStatus
+        status="beta"
+        statusLabel="In the app · early beta"
+        icon={TrendingUp}
+        title="Investors"
+        description="Investor profiles are in the app. Requesting a warm introduction is planned as part of FNDRS Pro, which is not available yet."
+        items={['Investor profiles with firm and check size', 'Filter investors by what they focus on']}
+        note={
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <StatusBadge status="unavailable" /> Warm intro requests
+          </span>
+        }
+      />
+    ),
   },
   {
     id: 'opportunities',
@@ -138,7 +168,16 @@ const CHAPTERS: {
       { href: '/community', label: 'Looking-for posts' },
       { href: '/for-builders', label: 'For Builders' },
     ],
-    media: <WordList items={['Co-founder', 'Hiring', 'Partnership', 'Investment', 'Freelance', 'Accelerator']} caption="Opportunity types in the app" />,
+    media: (
+      <FeatureStatus
+        status="live"
+        icon={Briefcase}
+        title="Opportunities"
+        description="Concrete asks, posted by members. Listings grow as more teams join the beta."
+        itemsLabel="Opportunity types"
+        items={['Co-founder', 'Hiring', 'Partnership', 'Investment', 'Freelance', 'Accelerator']}
+      />
+    ),
   },
 ];
 

@@ -3,17 +3,13 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
 import { footerNav, pages } from '@/lib/pages';
-import { site } from '@/lib/site';
+import { site, socialLinks } from '@/lib/site';
 import { ButtonLink } from '@/components/ui/Button';
 import { Container } from '@/components/ui/primitives';
+import { CurrentYear } from './CurrentYear';
 import { Wordmark } from './Wordmark';
 
 export function Footer() {
-  const socials = [
-    { label: 'Instagram', href: site.socials.instagram },
-    { label: 'LinkedIn', href: site.socials.linkedin },
-  ];
-
   return (
     <footer className="relative overflow-hidden border-t hairline bg-ink-950">
       <Container wide className="pt-20 sm:pt-28">
@@ -59,31 +55,41 @@ export function Footer() {
             </nav>
           ))}
 
-          <div>
-            <p className="label-mono text-faint">Social</p>
-            <ul className="mt-5 space-y-3">
-              {socials.map((s) => (
-                <li key={s.label}>
-                  {s.href ? (
-                    <a href={s.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-[0.875rem] text-muted transition-colors hover:text-ivory">
+          {socialLinks.length > 0 && (
+            <nav aria-label="Social">
+              <p className="label-mono text-faint">Social</p>
+              <ul className="mt-5 space-y-3">
+                {socialLinks.map((s) => (
+                  <li key={s.label}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[0.875rem] text-muted transition-colors hover:text-ivory"
+                    >
                       {s.label}
                       <ArrowUpRight className="size-3.5" aria-hidden />
+                      <span className="sr-only">(opens in a new tab)</span>
                     </a>
-                  ) : (
-                    <span className="text-[0.875rem] text-faint">
-                      {s.label} <span className="text-[0.75rem]">· soon</span>
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
         </div>
 
         <div className="flex flex-col-reverse items-start justify-between gap-6 border-t hairline py-8 sm:flex-row sm:items-center">
-          <p className="text-[0.8125rem] text-faint">
-            © {new Date().getFullYear()} {site.name}. Built in public, in early beta.
-          </p>
+          <div className="space-y-1.5 text-[0.8125rem] text-faint">
+            <p>
+              © <CurrentYear /> {site.name}. In early beta.
+            </p>
+            <p>
+              Designed &amp; developed by{' '}
+              <a href={site.credit.url} target="_blank" rel="noopener" className="text-subtle underline decoration-white/15 underline-offset-4 transition-colors hover:text-ivory">
+                {site.credit.name}
+              </a>
+            </p>
+          </div>
           <Image src="/brand/mark.png" alt="" width={28} height={28} className="h-7 w-auto opacity-70" />
         </div>
       </Container>

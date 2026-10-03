@@ -33,10 +33,10 @@ const GROUPS: { id: string; title: string; items: FAQItem[] }[] = [
     id: 'privacy',
     title: 'Profiles & privacy',
     items: [
-      { q: 'Who can see my profile?', a: 'Members of FNDRS. You can switch off discoverability so you do not appear in Discover or Smart Match, and hide your location.' },
+      { q: 'Who can see my profile?', a: 'Members of FNDRS. You can pause your appearance in Smart Match, hide your city, and limit messages to your matches.' },
       { q: 'Who can message me?', a: 'You choose: everyone, or only people you matched with.' },
       { q: 'What do XP, level and Founder Score mean?', a: 'They reflect activity on FNDRS — completing your profile, posting, joining events, finishing challenges. They do not measure how good someone is as a founder.' },
-      { q: 'Can I delete my account?', a: 'Yes. If you need help, contact us and we will take care of it.' },
+      { q: 'Can I delete my account?', a: 'Yes, in the app settings. Deleting your account permanently removes your profile, posts, messages and matches.' },
     ],
   },
   {
@@ -45,7 +45,7 @@ const GROUPS: { id: string; title: string; items: FAQItem[] }[] = [
     items: [
       { q: 'Is FNDRS free?', a: 'Yes, the core of FNDRS is free. FNDRS Pro, with advanced tools, is planned. Paid plans are not available yet and pricing is not final.' },
       { q: 'Is FNDRS Copilot available?', a: 'Not yet. Copilot is in development. You can already see it in the app, marked as not activated.' },
-      { q: 'How do I get access?', a: 'Request early access on this website. We will contact you as FNDRS opens to more people.' },
+      { q: 'How do I get access?', a: 'Request Early Access on this website. We contact you by email when your access is ready.' },
       { q: 'Does FNDRS give investment advice?', a: 'No. FNDRS helps people discover and meet each other. It does not broker, recommend or execute investments.' },
     ],
   },

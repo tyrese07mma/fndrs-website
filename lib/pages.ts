@@ -132,7 +132,7 @@ export const pages = P({
     blurb: 'The full path from sign-up to shipping.',
     title: 'How FNDRS works — from profile to team',
     description:
-      'Ten steps from creating your account to growing your network: how people use FNDRS to find who they should be building with.',
+      'Eight steps from building your profile to growing your network: how people use FNDRS to find who they should be building with.',
     icon: Map,
   },
   forFounders: {
@@ -185,7 +185,7 @@ export const pages = P({
     label: 'Contact',
     blurb: 'Questions, feedback, partnerships.',
     title: 'Contact FNDRS',
-    description: 'Get in touch with the FNDRS team about the app, partnerships, press or the early access programme.',
+    description: 'Get in touch with the FNDRS team about the app, partnerships, press or the Early Access programme.',
     icon: Mail,
   },
   earlyAccess: {
@@ -194,7 +194,7 @@ export const pages = P({
     blurb: 'Join the first people building FNDRS with us.',
     title: 'Early Access — be early to FNDRS',
     description:
-      'FNDRS is in early beta. Request early access and help shape the network for founders, builders, mentors and investors.',
+      'FNDRS is in early beta. Request Early Access and help shape the network for founders, builders, mentors and investors.',
     icon: Sparkles,
   },
   faq: {
@@ -282,7 +282,7 @@ export const mainNav: NavGroup[] = [
 export const footerNav: { title: string; items: PageKey[] }[] = [
   { title: 'Product', items: ['smartMatch', 'discover', 'community', 'profiles', 'startups', 'copilot', 'pro'] },
   { title: 'Solutions', items: ['forFounders', 'forBuilders', 'forInvestors', 'forMentors'] },
-  { title: 'Resources', items: ['howItWorks', 'faq', 'roadmap', 'earlyAccess'] },
-  { title: 'Company', items: ['about', 'contact', 'security'] },
+  { title: 'Company', items: ['about', 'roadmap', 'contact'] },
+  { title: 'Resources', items: ['howItWorks', 'faq', 'security', 'earlyAccess'] },
   { title: 'Legal', items: ['privacy', 'imprint'] },
 ];

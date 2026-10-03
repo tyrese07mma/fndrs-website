@@ -62,7 +62,7 @@ export default function ForBuildersPage() {
         { q: 'Is FNDRS a job board?', a: 'Not really. You will find open roles and opportunities, but FNDRS is about meeting the people first — before a role is even written down.' },
         { q: 'Can I keep my search private?', a: 'You control whether your profile is discoverable and who can message you.' },
       ]}
-      closing={{ title: 'Your next project is looking for you.', body: 'Join early access as a builder and tell FNDRS what you can do.' }}
+      closing={{ title: 'Your next project is looking for you.', body: 'Join Early Access as a builder and tell FNDRS what you can do.' }}
       related={['startups', 'smartMatch', 'profiles', 'community']}
     />
   );

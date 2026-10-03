@@ -1,65 +1,86 @@
 import Link from 'next/link';
 
-import { Fill, LegalPage } from '@/components/marketing/LegalPage';
+import { LegalAddress, LegalContact, LegalPage } from '@/components/marketing/LegalPage';
 import { pageMetadata } from '@/lib/metadata';
 import { site } from '@/lib/site';
 
 export const metadata = pageMetadata('privacy');
 
 export default function PrivacyPage() {
-  const l = site.legal;
+  const p = site.providers;
   return (
-    <LegalPage
-      href="/privacy"
-      title="Privacy Policy"
-      notice="Draft. This policy describes how this website is built. Have it reviewed by a lawyer and complete the highlighted fields before going live."
-    >
-      <p>This policy explains which personal data we process when you visit this website or send us a form, why we do it, and which rights you have.</p>
+    <LegalPage href="/privacy" title="Privacy Policy" updated="3 October 2026">
+      <p>
+        This policy explains which personal data we process when you visit this website or send us a form, why we do it, and which rights you have under the General Data Protection
+        Regulation (GDPR).
+      </p>
 
       <h2>1. Controller</h2>
+      <LegalAddress />
       <p>
-        <Fill value={l.company} label="Company / full name" />, <Fill value={l.street} label="Street" />, <Fill value={l.city} label="Postcode and city" />, {l.country}. Email:{' '}
-        <Fill value={l.email} label="Email address" />.
+        <LegalContact />
       </p>
 
       <h2>2. Visiting this website</h2>
       <p>
-        When you open this website, our hosting provider processes technical data that your browser sends automatically — such as IP address, date and time, the page requested, browser and operating
-        system — in server logs. This is necessary to deliver the website securely (Art. 6(1)(f) GDPR). Hosting provider: <Fill value="" label="Hosting provider and location" />.
+        When you open this website, technical data that your browser sends automatically is processed in server logs: IP address, date and time of the request, the page requested,
+        referrer, browser and operating system. This is necessary to deliver the website securely and to detect misuse. The legal basis is our legitimate interest in a secure,
+        working website (Art. 6 (1) (f) GDPR).
       </p>
       <p>
-        <strong>No tracking, no cookies.</strong> This website does not use analytics, advertising trackers or cookies. Fonts are served from our own server; no data is sent to font providers when
-        you visit.
+        This website is hosted by {p.hosting}, which processes this data on our behalf under a data processing agreement (Art. 28 GDPR). Data may be processed outside the European
+        Union. Such transfers are based on the EU Standard Contractual Clauses (Art. 46 (2) (c) GDPR).
       </p>
 
-      <h2>3. Early access and contact forms</h2>
+      <h2>3. No tracking, no cookies</h2>
       <p>
-        When you send the early access or contact form, we process the details you enter: name, email address, your role, what you are looking for or your message. We use them only to handle
-        your request and to contact you about early access (Art. 6(1)(b) and (a) GDPR). You confirm this with the checkbox in the form and can withdraw your consent at any time.
+        This website does not use analytics, advertising trackers or cookies. Fonts are served from the same server as the website, so no data is sent to font providers when you visit.
+      </p>
+
+      <h2>4. Early Access and contact forms</h2>
+      <p>
+        When you send the Early Access or contact form, we process the details you enter: your name, email address and, depending on the form, your role, what you are looking for, the
+        topic and your message. We use them only to handle your request and to contact you about it. The legal basis is your consent (Art. 6 (1) (a) GDPR), which you give with the
+        checkbox in the form, and the handling of your request (Art. 6 (1) (b) GDPR). You can withdraw your consent at any time with effect for the future.
       </p>
       <p>
-        Form submissions are forwarded to <Fill value="" label="Tool / service that receives submissions" />. We delete your details when they are no longer needed for your request, or earlier if
-        you ask us to.
+        {p.forms
+          ? `Form submissions are stored with ${p.forms}, which processes them on our behalf under a data processing agreement.`
+          : 'Form submissions are transmitted to us over an encrypted connection and stored only for handling your request.'}{' '}
+        We delete your details as soon as they are no longer needed for your request, unless statutory retention obligations apply, or earlier if you ask us to.
       </p>
 
-      <h2>4. The FNDRS app</h2>
-      <p>The FNDRS app has its own privacy information, which you will see in the app before you create an account. This policy only covers this website.</p>
+      <h2>5. Links to social networks</h2>
+      <p>
+        This website links to the FNDRS profile on Instagram. These are plain links, not embedded plugins: no data is sent to Instagram (Meta Platforms Ireland Ltd.) until you click
+        one. After that, Instagram&rsquo;s own privacy policy applies.
+      </p>
 
-      <h2>5. Your rights</h2>
+      <h2>6. The FNDRS app</h2>
+      <p>
+        This policy covers this website only. The FNDRS app shows its own privacy information before you create an account.
+      </p>
+
+      <h2>7. Your rights</h2>
       <ul>
-        <li>Access to the data we hold about you (Art. 15 GDPR)</li>
+        <li>Access to the personal data we hold about you (Art. 15 GDPR)</li>
         <li>Correction (Art. 16) and deletion (Art. 17)</li>
         <li>Restriction of processing (Art. 18) and data portability (Art. 20)</li>
         <li>Objection to processing based on legitimate interests (Art. 21)</li>
-        <li>Withdrawal of consent at any time, with effect for the future (Art. 7(3))</li>
-        <li>Complaint to a data protection supervisory authority (Art. 77)</li>
+        <li>Withdrawal of consent at any time, with effect for the future (Art. 7 (3))</li>
+        <li>
+          Complaint to a data protection supervisory authority (Art. 77). For us, this is the Hessian Commissioner for Data Protection and Freedom of Information (Der Hessische
+          Beauftragte für Datenschutz und Informationsfreiheit).
+        </li>
       </ul>
       <p>
-        To use your rights, write to us at <Fill value={l.email} label="Email address" /> or via the <Link href="/contact">contact page</Link>.
+        To use your rights, contact us: <LegalContact />.
       </p>
 
-      <h2>6. Changes</h2>
-      <p>We will update this policy when the website or our processing changes. The current version is always available on this page.</p>
+      <h2>8. Changes</h2>
+      <p>
+        We update this policy when the website or our processing changes. The current version is always available on this page. See also <Link href="/security">Security &amp; Privacy</Link>.
+      </p>
     </LegalPage>
   );
 }

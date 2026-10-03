@@ -44,7 +44,7 @@ export function EditorialSection({
           <div className={cn(media ? 'lg:col-span-5' : 'lg:col-span-8', flip && media && 'lg:order-2')}>
             <Reveal>
               {status && <div className="mb-6">{status}</div>}
-              <h3 className="headline-md">{title}</h3>
+              <h2 className="headline-md">{title}</h2>
               <div className="lead mt-7 space-y-5 text-muted">{children}</div>
             </Reveal>
             {links && links.length > 0 && (

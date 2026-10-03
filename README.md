@@ -30,13 +30,14 @@ scripts/prepare-assets.mjs   crops the original screenshots + builds logo/OG/fav
 
 ## Before going live
 
-1. **`lib/site.ts`** — fill `legal` (imprint), `contactEmail`, `socials`. Empty fields are shown as highlighted placeholders on `/imprint` and `/privacy`, or as "soon" in the footer.
-2. **`.env`** — set `NEXT_PUBLIC_SITE_URL` (canonical URLs, sitemap, OpenGraph) and `FORMS_WEBHOOK_URL` (where form submissions are POSTed as JSON). Without a webhook, forms log to the console in dev and return an error in production, so nothing is silently lost.
-3. **`/privacy`** — the policy is a draft that describes how this site is built. Have it reviewed.
+1. **`lib/site.ts`**: operator details (imprint, privacy), contact email, social links, providers. Empty values are left out of the public pages, never shown as placeholders.
+2. **Environment** (Vercel → Settings → Environment Variables, then redeploy):
+   - `NEXT_PUBLIC_SITE_URL`: the custom domain once you have one. All canonicals, OpenGraph URLs, the sitemap and structured data are built from it.
+   - Forms: `FORMS_WEBHOOK_URL` **or** `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` (run `supabase/website_submissions.sql` first). Without one, the Early Access and contact forms show an "opening soon" state instead of a form.
 
 ## Screenshots
 
-All app imagery is the original screenshots, only cropped (status bar) and re-encoded. To add or replace screens:
+All app imagery is the original screenshots: cropped (status bar), with the floating dev-menu button painted out, and re-encoded. To add or replace screens:
 
 ```bash
 node scripts/prepare-assets.mjs <folder-with-originals>

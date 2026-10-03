@@ -135,7 +135,7 @@ export default function StartupsPage() {
       <CTASection
         eyebrow="Startups"
         title="Put your startup where builders look."
-        body="Early access is open. Bring your idea, your MVP or your seed-stage company."
+        body="Request Early Access. Bring your idea, your MVP or your seed-stage company."
         primary={{ href: '/early-access', label: 'Add your startup' }}
         secondary={{ href: '/for-investors', label: 'For Investors' }}
       />
