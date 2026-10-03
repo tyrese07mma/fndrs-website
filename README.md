@@ -50,3 +50,9 @@ then register the new file in `lib/screens.ts`. Pages without a matching capture
 - No invented numbers, logos, testimonials or prices.
 - Anything not shipped is labelled with `StatusBadge` (`dev` = in development, `soon` = coming to FNDRS).
 - Feature claims match the app (`_native_app_v2`): fit scoring rules, 25 free swipes/day, post types, profile fields, XP.
+
+## Cookies & consent
+
+The site currently sets **no cookies**, uses **no local/session storage** and loads **nothing from third parties** (fonts and images are self-hosted). That is why there is no cookie banner, and `/privacy#cookies` says so.
+
+If you add anything that needs consent (analytics, pixels, YouTube/Vimeo embeds, external fonts or scripts), you must add a consent manager first: nothing non-essential may load before consent, "Reject" must be as easy as "Accept", and the privacy policy has to be updated in the same change.

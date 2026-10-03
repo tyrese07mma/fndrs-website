@@ -32,10 +32,13 @@ export default function PrivacyPage() {
         Union. Such transfers are based on the EU Standard Contractual Clauses (Art. 46 (2) (c) GDPR).
       </p>
 
-      <h2>3. No tracking, no cookies</h2>
+      <h2 id="cookies">3. No cookies, no tracking</h2>
       <p>
-        This website does not use analytics, advertising trackers or cookies. Fonts are served from the same server as the website, so no data is sent to font providers when you visit.
+        This website does not set cookies and does not store or read any information on your device (no local storage or session storage). It uses no analytics, advertising or
+        tracking services and loads no third-party scripts, embedded videos or external fonts: everything, including fonts and images, is served from our own domain. This is why
+        there is no cookie banner: there is nothing to consent to.
       </p>
+      <p>If we ever add a service that needs your consent, we will ask for it before that service is loaded and update this policy.</p>
 
       <h2>4. Early Access and contact forms</h2>
       <p>
